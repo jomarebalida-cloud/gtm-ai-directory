@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talk to the team</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+a{text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
+section[id]{scroll-margin-top:16px}
+.door{flex:1 1 300px;max-width:420px;box-sizing:border-box;background:#FFFFFF;border:1px solid #D4D4D4;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;color:#1E1E1E}
+.door:hover{border-color:#1E1E1E}
+.door:focus-visible{outline:3px solid #006FE5;outline-offset:2px}
+.door h3{margin:0;font-size:24px;font-weight:700;line-height:1.2}
+.door p{margin:0;font-size:18px;color:#4A4A4A}
+.door .go{margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.label{font-size:16px;font-weight:600}
+.opt{font-weight:400;color:#4A4A4A}
+.help{font-size:14px;color:#4A4A4A}
+.input{font:inherit;font-size:18px;color:#1E1E1E;background:#FFFFFF;border:1px solid #8A8A8A;border-radius:8px;min-height:48px;padding:10px 14px;box-sizing:border-box;width:100%}
+textarea.input{min-height:96px;resize:vertical}
+.input:focus{outline:3px solid #006FE5;outline-offset:1px;border-color:#006FE5}
+.field.invalid .input{border-color:#B3261E;border-width:2px}
+.err{display:none;font-size:14px;font-weight:600;color:#B3261E}
+.field.invalid .err{display:block}
+.count{font-size:14px;color:#4A4A4A;text-align:right}
+.btn{font:inherit;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;border:0;background:#006FE5;color:#FFFFFF;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.btn:hover{background:#005CBF}
+.btn.ghost{background:transparent;color:#1E1E1E;border:2px solid #1E1E1E;box-sizing:border-box}
+.btn.ghost:hover{background:#F0F0F0}
+.row{display:flex;flex-wrap:wrap;gap:24px}
+.row>.field{flex:1 1 240px}
+.card{background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:28px}
+</style>
+</head>
+<body>
+<div style="background:#F0F0F0;color:#1E1E1E;font-family:Inter, Helvetica, Arial, sans-serif;line-height:1.5">
+
+<header style="background:#1E1E1E;color:#F0F0F0">
+<div style="max-width:1312px;margin:0 auto;padding:12px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+<span style="font-size:18px;font-weight:700;letter-spacing:0.02em">GTM AI · Agent Register</span>
+<nav style="display:flex;flex-wrap:wrap;gap:24px">
+<a href="index.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Agents</a>
+<a href="how-we-work.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">How we work</a>
+<a href="request-an-agent.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Request an agent</a>
+</nav>
+</div>
+</header>
+
+<main>
+
+<section style="background:#1E1E1E;color:#F0F0F0;position:relative;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;right:-160px;top:-200px;width:640px;height:640px;border-radius:50%;background:linear-gradient(45deg,#FFC500,#F569FF)"></div>
+<div aria-hidden="true" style="position:absolute;right:240px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div style="position:relative;max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 96px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#A0A0A0">
+<a href="index.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Agent register</a>
+<span>/</span>
+<span style="color:#F0F0F0">Talk to the team</span>
+</div>
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">CONTACT</span>
+<h1 style="margin:0;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.05;max-width:900px">Talk to the team</h1>
+<p style="margin:0;font-size:24px;color:#D8D8D8;max-width:720px">Tell us what you need and we'll point you to the right door.</p>
+</div>
+</section>
+
+<section id="doors">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">PICK YOUR DOOR</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">What do you need?</h2>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch">
+
+<a class="door" href="request-an-agent.html">
+<h3>Suggest a new agent</h3>
+<p>You have a job you'd like an agent to finish. Tell us the goal and the data it needs.</p>
+<span class="go">Request an agent <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+</a>
+
+<a class="door" href="request-a-change.html">
+<h3>Change or fix an agent</h3>
+<p>An agent that's already live isn't doing what you need, or something is broken.</p>
+<span class="go">Request a change <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+</a>
+
+<a class="door" href="#experiment">
+<h3>Share a field experiment</h3>
+<p>Your team is already trying something with AI that works. We'll look at rolling it out to everyone.</p>
+<span class="go">Share an experiment <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></span>
+</a>
+
+<a class="door" href="how-we-work.html">
+<h3>See how it works</h3>
+<p>Intake, the agent page template, and the four stages every agent goes through.</p>
+<span class="go">How we work <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+</a>
+
+<a class="door" href="#question">
+<h3>Ask something else</h3>
+<p>A question that doesn't fit the other doors. Send it and we'll route it to the right person.</p>
+<span class="go">Ask a question <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></span>
+</a>
+
+</div>
+</div>
+</section>
+
+<section id="experiment" style="background:#FFFFFF">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+<div style="flex:1 1 280px;max-width:420px;display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">FIELD EXPERIMENT</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Share what's working</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A">We want to find what the field is already trying with AI, keep what works, and roll it out to everyone. Four quick questions.</p>
+</div>
+<div style="flex:2 1 520px;min-width:0">
+<form class="card" data-prefix="XP" data-kind="Field experiment" data-subject="what" novalidate style="background:#F0F0F0">
+<div class="field">
+<label class="label" for="x-what">What are you trying?</label>
+<textarea class="input" id="x-what" name="what" data-label="What is being tried" maxlength="280" data-count required></textarea>
+<span class="count"></span>
+<span class="err" role="alert">Tell us what you're trying.</span>
+</div>
+<div class="field">
+<label class="label" for="x-who">Who is doing it, and how many people</label>
+<input class="input" id="x-who" name="who" data-label="Who and how many" maxlength="80" required>
+<span class="err" role="alert">Say who is using it.</span>
+</div>
+<div class="field">
+<label class="label" for="x-result">What have you seen so far</label>
+<textarea class="input" id="x-result" name="result" data-label="Result so far" maxlength="200" data-count required></textarea>
+<span class="count"></span>
+<span class="err" role="alert">Share a result, even a rough one.</span>
+</div>
+<div class="field">
+<label class="label" for="x-link">Link <span class="opt">(optional)</span></label>
+<input class="input" id="x-link" name="link" data-label="Link" placeholder="Doc, prompt, Slack thread">
+</div>
+<div class="row">
+<div class="field"><label class="label" for="x-name">Your name</label><input class="input" id="x-name" name="name" data-label="Name" autocomplete="name" required><span class="err" role="alert">Add your name.</span></div>
+<div class="field"><label class="label" for="x-email">Work email</label><input class="input" id="x-email" name="email" type="email" data-label="Email" autocomplete="email" required><span class="err" role="alert">Enter a valid email.</span></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center"><button class="btn" type="submit">Send experiment</button></div>
+<p class="help" style="margin:0">Sending opens your email app with this filled in, addressed to the GTM AI team. Press send there to finish.</p>
+</form>
+<div class="card done" hidden tabindex="-1" style="background:#F0F0F0">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">ALMOST DONE</span>
+<h3 style="margin:0;font-size:32px;font-weight:700;line-height:1.15">Your email is ready to send</h3>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Press send in your email app to deliver it to the GTM AI team. Reference: <b class="ref" style="color:#1E1E1E"></b></p>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Nothing opened? Email <a href="mailto:gtmai@alteryx.com" style="color:#006FE5;font-weight:600;text-decoration:underline">gtmai@alteryx.com</a> with the details.</p>
+<div><button class="btn ghost again" type="button">Back to the form</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="question">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+<div style="flex:1 1 280px;max-width:420px;display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">QUESTIONS</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Ask us anything</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Not sure which door fits? Ask here and we'll route it to the right person.</p>
+</div>
+<div style="flex:2 1 520px;min-width:0">
+<form class="card" data-prefix="Q" data-kind="Question" data-subject="topic" novalidate>
+<div class="field">
+<label class="label" for="q-topic">Topic</label>
+<select class="input" id="q-topic" name="topic" data-label="Topic" required>
+<option value="">Select a topic</option>
+<option>An existing agent</option><option>The process or stages</option><option>Access or data</option><option>Something else</option>
+</select>
+<span class="err" role="alert">Choose a topic.</span>
+</div>
+<div class="field">
+<label class="label" for="q-msg">Your question</label>
+<textarea class="input" id="q-msg" name="msg" data-label="Question" maxlength="400" data-count required></textarea>
+<span class="count"></span>
+<span class="err" role="alert">Add your question.</span>
+</div>
+<div class="row">
+<div class="field"><label class="label" for="q-name">Your name</label><input class="input" id="q-name" name="name" data-label="Name" autocomplete="name" required><span class="err" role="alert">Add your name.</span></div>
+<div class="field"><label class="label" for="q-email">Work email</label><input class="input" id="q-email" name="email" type="email" data-label="Email" autocomplete="email" required><span class="err" role="alert">Enter a valid email.</span></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center"><button class="btn" type="submit">Send question</button></div>
+<p class="help" style="margin:0">Sending opens your email app with this filled in, addressed to the GTM AI team. Press send there to finish.</p>
+</form>
+<div class="card done" hidden tabindex="-1">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">ALMOST DONE</span>
+<h3 style="margin:0;font-size:32px;font-weight:700;line-height:1.15">Your email is ready to send</h3>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Press send in your email app to deliver it to the GTM AI team. Reference: <b class="ref" style="color:#1E1E1E"></b></p>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Nothing opened? Email <a href="mailto:gtmai@alteryx.com" style="color:#006FE5;font-weight:600;text-decoration:underline">gtmai@alteryx.com</a> with the details.</p>
+<div><button class="btn ghost again" type="button">Back to the form</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:#1E1E1E;color:#F0F0F0">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+<h2 style="margin:0;font-size:32px;font-weight:700;line-height:1.15">Prefer email?</h2>
+<p style="margin:0;font-size:18px;color:#D8D8D8">Write to the team directly and we'll point you to the right door.</p>
+<a href="mailto:gtmai@alteryx.com" style="background:#00F2A2;color:#1E1E1E;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">gtmai@alteryx.com</a>
+</div>
+</section>
+
+</main>
+
+<footer style="background:#1E1E1E;color:#A0A0A0;border-top:1px solid #3A3A3A">
+<div style="max-width:1312px;margin:0 auto;padding:32px clamp(24px,5vw,64px);font-size:14px">GTM AI Transformation · Agent register · Contact: <a href="mailto:gtmai@alteryx.com" style="color:#F0F0F0;text-decoration:underline">gtmai@alteryx.com</a></div>
+</footer>
+
+</div>
+<script>
+(function(){
+  var TO='gtmai@alteryx.com';
+  function counts(f){[].forEach.call(f.querySelectorAll('[data-count]'),function(t){t.parentNode.querySelector('.count').textContent=t.value.length+' / '+t.maxLength;});}
+  function good(el){
+    var v=el.value.trim();
+    if(!el.required)return true;
+    if(!v)return false;
+    if(el.type==='email')return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+    return true;
+  }
+  function mark(el){var f=el.closest('.field');f.classList.toggle('invalid',!good(el));return good(el);}
+  [].forEach.call(document.querySelectorAll('form[data-prefix]'),function(form){
+    var done=form.nextElementSibling;
+    counts(form);
+    form.addEventListener('input',function(e){
+      var f=e.target.closest('.field');
+      if(f&&f.classList.contains('invalid'))mark(e.target);
+      counts(form);
+    });
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var first=null;
+      [].forEach.call(form.querySelectorAll('.input'),function(el){if(!mark(el)&&!first)first=el;});
+      if(first){first.focus();return;}
+      var d=new Date(),p=function(x){return String(x).length<2?'0'+x:x;};
+      var ref=form.dataset.prefix+'-'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+      var subj=form.elements[form.dataset.subject].value.trim();
+      if(subj.length>70)subj=subj.slice(0,67)+'...';
+      var subject='['+ref+'] '+form.dataset.kind+': '+subj;
+      var lines=[];
+      [].forEach.call(form.querySelectorAll('.input'),function(el){
+        var v=el.value.trim();
+        if(el.name==='name'||el.name==='email')return;
+        lines.push(el.dataset.label+': '+(v||'None'));
+      });
+      lines.push('','Requester: '+form.elements.name.value.trim()+' ('+form.elements.email.value.trim()+')','Reference: '+ref);
+      done.querySelector('.ref').textContent=ref;
+      form.hidden=true;done.hidden=false;done.focus();
+      location.href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\r\n'));
+    });
+    done.querySelector('.again').addEventListener('click',function(){done.hidden=true;form.hidden=false;form.querySelector('.input').focus();});
+  });
+})();
+</script>
+</body>
+</html>
