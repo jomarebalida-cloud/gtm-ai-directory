@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request an agent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.label{font-size:16px;font-weight:600}
+.opt{font-weight:400;color:#4A4A4A}
+.help{font-size:14px;color:#4A4A4A}
+.input{font:inherit;font-size:18px;color:#1E1E1E;background:#FFFFFF;border:1px solid #8A8A8A;border-radius:8px;min-height:48px;padding:10px 14px;box-sizing:border-box;width:100%}
+textarea.input{min-height:96px;resize:vertical}
+.input:focus{outline:3px solid #006FE5;outline-offset:1px;border-color:#006FE5}
+.field.invalid .input{border-color:#B3261E;border-width:2px}
+.field.invalid .choices{outline:2px solid #B3261E;outline-offset:6px;border-radius:12px}
+.err{display:none;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#B3261E}
+.field.invalid .err{display:flex}
+.field.ai .label::after{content:" · Filled by Gemini, check this";font-size:14px;font-weight:400;color:#4A4A4A}
+.count{font-size:14px;color:#4A4A4A;text-align:right}
+.choices{display:flex;flex-wrap:wrap;gap:12px}
+.choice{position:relative;flex:1 1 200px}
+.choice.pill{flex:0 0 auto}
+.choice input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.choice span{display:flex;align-items:center;gap:12px;min-height:48px;box-sizing:border-box;padding:10px 16px;border:1px solid #8A8A8A;border-radius:16px;background:#FFFFFF;font-size:16px;font-weight:600;line-height:1.3}
+.choice.pill span{border-radius:999px;padding:8px 18px}
+.choice span::before{content:"";flex:0 0 20px;height:20px;border-radius:50%;border:2px solid #1E1E1E;box-sizing:border-box;background:#FFFFFF}
+.choice.pill span::before{display:none}
+.choice input:checked + span{background:#1E1E1E;color:#F0F0F0;border-color:#1E1E1E}
+.choice input:checked + span::before{border-color:#00F2A2;background:#00F2A2 radial-gradient(circle,#1E1E1E 0 35%,transparent 40%)}
+.choice input:focus-visible + span{outline:3px solid #006FE5;outline-offset:2px}
+.btn{font:inherit;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;border:0;background:#006FE5;color:#FFFFFF;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:#005CBF}
+.btn.ghost{background:transparent;color:#1E1E1E;border:2px solid #1E1E1E;box-sizing:border-box}
+.btn.ghost:hover{background:#F0F0F0}
+.row{display:flex;flex-wrap:wrap;gap:24px}
+.row>.field{flex:1 1 240px}
+.sec{font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A;display:flex;align-items:center;gap:12px}
+.sec b{width:32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;display:inline-flex;align-items:center;justify-content:center;letter-spacing:0}
+</style>
+</head>
+<body>
+<div style="background:#F0F0F0;color:#1E1E1E;font-family:Inter, Helvetica, Arial, sans-serif;line-height:1.5">
+
+<header style="background:#1E1E1E;color:#F0F0F0">
+<div style="max-width:1312px;margin:0 auto;padding:12px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+<span style="font-size:18px;font-weight:700;letter-spacing:0.02em">GTM AI · Agent Register</span>
+<nav style="display:flex;flex-wrap:wrap;gap:24px">
+<a href="index.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Agents</a>
+<a href="#" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">How we work</a>
+<a href="request-an-agent.html" style="color:#F0F0F0;font-size:14px;font-weight:700;min-height:44px;display:inline-flex;align-items:center">Request an agent</a>
+</nav>
+</div>
+</header>
+
+<section style="background:#1E1E1E;color:#F0F0F0;position:relative;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;right:-160px;top:-200px;width:640px;height:640px;border-radius:50%;background:linear-gradient(45deg,#FFC500,#F569FF)"></div>
+<div aria-hidden="true" style="position:absolute;right:240px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div style="position:relative;max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 80px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#A0A0A0">
+<a href="index.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Agent register</a>
+<span>/</span>
+<span style="color:#F0F0F0">Request an agent</span>
+</div>
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">AGENT REQUEST</span>
+<h1 style="margin:0;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.05;max-width:900px">Request an agent</h1>
+<p style="margin:0;font-size:24px;color:#D8D8D8;max-width:720px">Tell us the goal and the data it needs. We'll take it from there.</p>
+</div>
+</section>
+
+<section>
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+
+<div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
+
+<div id="gem" style="background:#FFFFFF;border:2px solid #1E1E1E;border-radius:24px;padding:clamp(24px,4vw,32px);display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">NOT SURE WHAT TO WRITE?</span>
+<h2 style="margin:0;font-size:24px;font-weight:700">Get a head start with Gemini</h2>
+<div class="field">
+<label class="label" for="idea">Your rough idea <span class="opt">(optional)</span></label>
+<textarea class="input" id="idea" placeholder="e.g. An agent that preps SEs for renewal calls using Salesforce and Gong"></textarea>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<button class="btn" type="button" id="open-gem">Open in Gemini <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button>
+<span class="help" style="flex:1 1 220px">Copies a prompt and opens Gemini. Paste it there, then paste the answer below.</span>
+</div>
+<div id="gem-fallback" hidden class="field">
+<label class="label" for="prompt-box">Copy this prompt into Gemini</label>
+<textarea class="input" id="prompt-box" readonly style="min-height:140px;font-size:14px"></textarea>
+</div>
+<div class="field">
+<label class="label" for="paste">Paste Gemini's answer</label>
+<textarea class="input" id="paste" style="font-size:14px"></textarea>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<button class="btn ghost" type="button" id="fill">Fill the form</button>
+<span id="gem-status" class="help" role="status" aria-live="polite" style="flex:1 1 220px"></span>
+</div>
+<p class="help" style="margin:0"><b>Don't paste customer or confidential data into Gemini.</b> Review every field before you send.</p>
+</div>
+
+<form id="cr" novalidate style="background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:32px">
+
+<div class="sec"><b>1</b>THE IDEA</div>
+
+<div class="field" id="f-name">
+<label class="label" for="name">Agent name</label>
+<input class="input" id="name" name="name" maxlength="60" required>
+<span class="err" role="alert">Name the agent.</span>
+</div>
+
+<div class="field" id="f-goal">
+<label class="label" for="goal">Goal in one line</label>
+<input class="input" id="goal" name="goal" maxlength="120" required>
+<span class="help">Example: Builds a board-ready business case from a single prompt.</span>
+<span class="err" role="alert">Add a one-line goal.</span>
+</div>
+
+<div class="field" id="f-func">
+<label class="label" for="func">Function</label>
+<select class="input" id="func" name="func" required>
+<option value="">Select a function</option>
+<option>Sales</option><option>Sales development</option><option>Planning</option><option>Customer success</option><option>Marketing</option><option>Other</option>
+</select>
+<span class="err" role="alert">Choose a function.</span>
+</div>
+
+<div class="field" id="f-problem">
+<label class="label" for="problem">Problem today</label>
+<textarea class="input" id="problem" name="problem" maxlength="280" data-count required></textarea>
+<span class="count"></span>
+<span class="err" role="alert">Describe the problem.</span>
+</div>
+
+<div class="field" id="f-does">
+<label class="label" for="does">What the agent should do</label>
+<textarea class="input" id="does" name="does" maxlength="280" data-count required></textarea>
+<span class="count"></span>
+<span class="err" role="alert">Describe what it should do.</span>
+</div>
+
+<div class="sec"><b>2</b>DATA AND RISK</div>
+
+<div class="field" id="f-data">
+<span class="label" id="data-l">Data it needs</span>
+<div class="choices" role="group" aria-labelledby="data-l">
+<label class="choice pill"><input type="checkbox" name="data" value="Salesforce"><span>Salesforce</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="Marketo"><span>Marketo</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="Outreach"><span>Outreach</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="LinkedIn"><span>LinkedIn</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="Snowflake"><span>Snowflake</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="Slack"><span>Slack</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="Gong"><span>Gong</span></label>
+<label class="choice pill"><input type="checkbox" name="data" value="Other"><span>Other</span></label>
+</div>
+<span class="err" role="alert">Pick at least one.</span>
+</div>
+
+<div class="field" id="f-users">
+<label class="label" for="users">Who uses it, and how many</label>
+<input class="input" id="users" name="users" maxlength="80" required>
+<span class="err" role="alert">Say who would use it.</span>
+</div>
+
+<div class="field" id="f-measure">
+<label class="label" for="measure">How we'd measure success</label>
+<input class="input" id="measure" name="measure" maxlength="100" required>
+<span class="err" role="alert">Add a success measure.</span>
+</div>
+
+<div class="field" id="f-risk">
+<span class="label" id="risk-l">Touches customer data or sends anything externally?</span>
+<div class="choices" role="radiogroup" aria-labelledby="risk-l">
+<label class="choice"><input type="radio" name="risk" value="No"><span>No</span></label>
+<label class="choice"><input type="radio" name="risk" value="Internal only"><span>Internal only</span></label>
+<label class="choice"><input type="radio" name="risk" value="Yes, external or customer-facing"><span>Yes, external or customer-facing</span></label>
+</div>
+<span class="err" role="alert">Pick one.</span>
+</div>
+
+<div class="sec"><b>3</b>YOU</div>
+
+<div class="row">
+<div class="field" id="f-who">
+<label class="label" for="who">Your name</label>
+<input class="input" id="who" name="who" autocomplete="name" required>
+<span class="err" role="alert">Add your name.</span>
+</div>
+<div class="field" id="f-email">
+<label class="label" for="email">Work email</label>
+<input class="input" id="email" name="email" type="email" autocomplete="email" required>
+<span class="err" role="alert">Enter a valid email.</span>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+<button class="btn" type="submit">Send request</button>
+<a href="index.html" class="btn ghost">Cancel</a>
+</div>
+<p class="help" style="margin:0">Sending opens your email app with the request filled in, addressed to the GTM AI team. Press send there to finish. Changing an existing agent? <a href="request-a-change.html" style="color:#006FE5;font-weight:600;text-decoration:underline">Request a change</a>.</p>
+</form>
+
+<div id="done" hidden tabindex="-1" style="background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:20px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">ALMOST DONE</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Your email is ready to send</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A">We opened your email app with the request filled in. Press send to deliver it to the GTM AI team. Reference: <b id="ref" style="color:#1E1E1E"></b></p>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Nothing opened? Email <a href="mailto:jomar.ebalida@alteryx.com" style="color:#006FE5;font-weight:600;text-decoration:underline">jomar.ebalida@alteryx.com</a> with the details, or go back and try again.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<button class="btn" type="button" id="again">Back to the form</button>
+<a href="index.html" class="btn ghost">Back to the register</a>
+</div>
+</div>
+</div>
+
+<aside style="flex:1 1 280px;max-width:400px;position:sticky;top:24px;background:#1E1E1E;color:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:20px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">WHAT HAPPENS NEXT</span>
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:0 0 36px;height:36px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="font-size:16px;padding-top:4px"><b>Propose.</b> Scored on value, feasibility, and risk; data checked.</span></div>
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:0 0 36px;height:36px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="font-size:16px;padding-top:4px"><b>Stage.</b> Built and tested on sample data; analytics and tech sign off.</span></div>
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:0 0 36px;height:36px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="font-size:16px;padding-top:4px"><b>Try.</b> Small group; a person approves every output.</span></div>
+<div style="display:flex;gap:16px;align-items:flex-start"><span style="flex:0 0 36px;height:36px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="font-size:16px;padding-top:4px"><b>Deploy.</b> In use, with permissions and logging on.</span></div>
+</aside>
+
+</div>
+</section>
+
+<footer style="background:#1E1E1E;color:#A0A0A0">
+<div style="max-width:1312px;margin:0 auto;padding:32px clamp(24px,5vw,64px);font-size:14px">GTM AI Transformation · Agent register</div>
+</footer>
+
+</div>
+<script>
+(function(){
+  var TO='jomar.ebalida@alteryx.com';
+  var form=document.getElementById('cr'), done=document.getElementById('done');
+  var ids=['name','goal','func','problem','does','data','users','measure','risk','who','email'];
+  var FUNCS=['Sales','Sales development','Planning','Customer success','Marketing','Other'];
+  var DATA=['Salesforce','Marketo','Outreach','LinkedIn','Snowflake','Slack','Gong','Other'];
+  var RISK=['No','Internal only','Yes, external or customer-facing'];
+  var usedAI=false;
+
+  function vals(n){
+    if(n==='data')return [].map.call(form.querySelectorAll('input[name=data]:checked'),function(c){return c.value;});
+    if(n==='risk'){var c=form.querySelector('input[name=risk]:checked');return c?c.value:'';}
+    return form.elements[n].value.trim();
+  }
+  function ok(n){
+    var v=vals(n);
+    if(!v||!v.length)return false;
+    if(n==='email')return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+    return true;
+  }
+  function mark(n){var f=document.getElementById('f-'+n);f.classList.toggle('invalid',!ok(n));return ok(n);}
+  function counts(){
+    [].forEach.call(form.querySelectorAll('[data-count]'),function(t){
+      t.parentNode.querySelector('.count').textContent=t.value.length+' / '+t.maxLength;
+    });
+  }
+  form.addEventListener('input',function(e){
+    var n=e.target.name;
+    if(ids.indexOf(n)<0)return;
+    var f=document.getElementById('f-'+n);
+    f.classList.remove('ai');
+    if(f.classList.contains('invalid'))mark(n);
+    counts();
+  });
+  counts();
+
+  /* Gemini helper */
+  var status=document.getElementById('gem-status');
+  function say(t){status.textContent=t;}
+  function buildPrompt(){
+    var idea=document.getElementById('idea').value.trim()||'(none given - ask me one question first if you need more)';
+    return [
+      'You are helping me fill in an intake form to request a new internal AI agent for a go-to-market (sales, marketing, customer success) team.',
+      'My rough idea: '+idea,
+      '',
+      'Reply with ONE JSON object only, no other text, using exactly these keys and limits:',
+      '{',
+      ' "name": string, max 60 chars - short agent name,',
+      ' "goal": string, max 120 chars - one-line goal,',
+      ' "func": one of '+JSON.stringify(FUNCS)+',',
+      ' "problem": string, max 280 chars - the problem today,',
+      ' "does": string, max 280 chars - what the agent should do, step by step,',
+      ' "data": array, any of '+JSON.stringify(DATA)+' - data it needs,',
+      ' "users": string, max 80 chars - who uses it and roughly how many,',
+      ' "measure": string, max 100 chars - how success would be measured,',
+      ' "risk": one of '+JSON.stringify(RISK)+' - whether it touches customer data or sends anything externally',
+      '}',
+      'Do not invent facts about my company. If unsure, leave a string empty.'
+    ].join('\n');
+  }
+  document.getElementById('open-gem').addEventListener('click',function(){
+    var p=buildPrompt(), box=document.getElementById('prompt-box'), fb=document.getElementById('gem-fallback');
+    box.value=p;
+    window.open('https://gemini.google.com/app','_blank','noopener');
+    function manual(){fb.hidden=false;box.focus();box.select();say('Copy the prompt above and paste it into Gemini.');}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(p).then(function(){fb.hidden=true;say('Prompt copied. Paste it into Gemini, then paste the answer here.');},manual);
+    }else manual();
+  });
+  function setText(n,v){
+    if(typeof v!=='string'||!v.trim())return false;
+    var el=form.elements[n];
+    if(el.tagName==='SELECT'){
+      var m=[].filter.call(el.options,function(o){return o.value&&o.value.toLowerCase()===v.trim().toLowerCase();})[0];
+      if(!m)return false; el.value=m.value;
+    }else el.value=v.trim().slice(0,el.maxLength>0?el.maxLength:v.length);
+    return true;
+  }
+  document.getElementById('fill').addEventListener('click',function(){
+    var raw=document.getElementById('paste').value, m=raw.match(/\{[\s\S]*\}/), j;
+    if(!m){say('No JSON found. Ask Gemini to reply with the JSON object only.');return;}
+    try{j=JSON.parse(m[0]);}catch(e){say('That JSON could not be read. Ask Gemini to try again.');return;}
+    var filled=[];
+    ['name','goal','func','problem','does','users','measure'].forEach(function(n){if(setText(n,j[n]))filled.push(n);});
+    if(Array.isArray(j.data)){
+      var any=false;
+      [].forEach.call(form.querySelectorAll('input[name=data]'),function(c){
+        var on=j.data.some(function(x){return String(x).toLowerCase()===c.value.toLowerCase();});
+        c.checked=on; any=any||on;
+      });
+      if(any)filled.push('data');
+    }
+    if(typeof j.risk==='string'){
+      var r=form.querySelector('input[name=risk]'), hit=null;
+      [].forEach.call(form.querySelectorAll('input[name=risk]'),function(c){if(c.value.toLowerCase()===j.risk.trim().toLowerCase())hit=c;});
+      if(hit){hit.checked=true;filled.push('risk');}
+    }
+    if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact keys.');return;}
+    filled.forEach(function(n){var f=document.getElementById('f-'+n);f.classList.add('ai');f.classList.remove('invalid');});
+    usedAI=true; counts();
+    say('Filled '+filled.length+' field'+(filled.length>1?'s':'')+'. Check each one, then add your name and email.');
+    document.getElementById('f-name').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var first=null;
+    ids.forEach(function(n){if(!mark(n)&&!first)first=n;});
+    if(first){var el=form.querySelector('[name='+first+']');el.focus();return;}
+    var d=new Date(),p=function(x){return String(x).length<2?'0'+x:x;};
+    var ref='AR-'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    var subject='['+ref+'] Agent request: '+vals('name')+' - '+vals('goal');
+    var body=[
+      'THE IDEA',
+      'Agent name: '+vals('name'),
+      'Goal: '+vals('goal'),
+      'Function: '+vals('func'),
+      'Problem today: '+vals('problem'),
+      'What it should do: '+vals('does'),
+      '',
+      'DATA AND RISK',
+      'Data it needs: '+vals('data').join(', '),
+      'Who uses it: '+vals('users'),
+      'Success measure: '+vals('measure'),
+      'Customer data or external sends: '+vals('risk'),
+      '',
+      'REQUESTER',
+      vals('who')+' ('+vals('email')+')',
+      'Reference: '+ref+(usedAI?'\nDrafted with Gemini, reviewed by requester.':'')
+    ].join('\r\n');
+    document.getElementById('ref').textContent=ref;
+    form.hidden=true;document.getElementById('gem').hidden=true;done.hidden=false;done.focus();
+    window.scrollTo(0,0);
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    done.hidden=true;form.hidden=false;document.getElementById('gem').hidden=false;form.elements.name.focus();
+  });
+})();
+</script>
+</body>
+</html>
