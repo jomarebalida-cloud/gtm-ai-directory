@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample insights report</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
+.tab{font:inherit;font-size:16px;font-weight:600;min-height:44px;padding:0 22px;border-radius:999px;border:1px solid #F0F0F0;background:transparent;color:#F0F0F0;cursor:pointer}
+.tab:hover{background:#2B2B2B}
+.tab[aria-pressed="true"]{background:#00F2A2;color:#1E1E1E;border-color:#00F2A2}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A}
+.card{background:#FFFFFF;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card h3{margin:0;font-size:24px;font-weight:700}
+.card p{margin:0;font-size:18px;color:#4A4A4A}
+.sec{max-width:1312px;margin:0 auto;padding:64px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:32px}
+.sec h2{margin:0;font-size:40px;font-weight:700;line-height:1.1}
+.tbl{width:100%;border-collapse:collapse;background:#FFFFFF;border-radius:24px;overflow:hidden}
+.tblwrap{overflow-x:auto;border-radius:24px;border:1px solid #D4D4D4;background:#FFFFFF}
+.tbl th,.tbl td{text-align:left;padding:16px 20px;font-size:16px;vertical-align:top}
+.tbl thead th{background:#1E1E1E;color:#F0F0F0;font-weight:700;white-space:nowrap}
+.tbl tbody tr:nth-child(even){background:#F0F0F0}
+.bar{display:flex;height:56px;border-radius:12px;overflow:hidden;width:100%}
+.bar span{display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;min-width:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:#4A4A4A}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.mini{height:12px;border-radius:6px;background:#E0E0E0;overflow:hidden;min-width:80px}
+.mini b{display:block;height:100%;background:#006FE5}
+.q{border-left:4px solid #006FE5;padding:4px 0 4px 20px;font-size:18px}
+.q small{display:block;color:#4A4A4A;font-size:14px;margin-top:6px}
+.pill{display:inline-block;border-radius:999px;padding:2px 12px;font-size:14px;font-weight:600;background:#F0F0F0;color:#1E1E1E;border:1px solid #C8C8C8}
+.pill.neg{background:#1E1E1E;color:#F569FF;border-color:#1E1E1E}
+.pill.cmp{background:#1E1E1E;color:#FFC500;border-color:#1E1E1E}
+</style>
+</head>
+<body>
+<div style="background:#F0F0F0;color:#1E1E1E;font-family:Inter, Helvetica, Arial, sans-serif;line-height:1.5">
+
+<header style="background:#1E1E1E;color:#F0F0F0">
+<div style="max-width:1312px;margin:0 auto;padding:12px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+<span style="font-size:18px;font-weight:700;letter-spacing:0.02em">GTM AI · Agent Register</span>
+<nav style="display:flex;flex-wrap:wrap;gap:24px">
+<a href="index.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Agents</a>
+<a href="how-we-work.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">How we work</a>
+<a href="request-an-agent.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Request an agent</a>
+</nav>
+</div>
+</header>
+
+<div role="note" style="background:#FFC500;color:#1E1E1E">
+<div style="max-width:1312px;margin:0 auto;padding:12px clamp(24px,5vw,64px);font-size:16px;font-weight:600">SAMPLE REPORT · The numbers, quotes and names below are made up to show the layout. They are not real data.</div>
+</div>
+
+<section style="background:#1E1E1E;color:#F0F0F0;position:relative;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;right:-160px;top:-220px;width:600px;height:600px;border-radius:50%;background:#006FE5"></div>
+<div aria-hidden="true" style="position:absolute;right:200px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div style="position:relative;max-width:1312px;margin:0 auto;padding:48px clamp(24px,5vw,64px) 64px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#A0A0A0">
+<a href="index.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Agent register</a><span>/</span>
+<a href="conversation-insights-agent.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Conversation Insights Agent</a><span>/</span>
+<span style="color:#F0F0F0">Sample report</span>
+</div>
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">CONVERSATION INSIGHTS</span>
+<h1 style="margin:0;font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1.05;max-width:900px">Weekly insights report</h1>
+<div style="display:flex;flex-wrap:wrap;gap:12px 32px;font-size:18px;color:#D8D8D8">
+<span><b style="color:#F0F0F0">Period</b> · Sample 30 days</span>
+<span><b style="color:#F0F0F0">Segment</b> · All regions</span>
+<span><b style="color:#F0F0F0">Conversations</b> · 1,240</span>
+<span><b style="color:#F0F0F0">With transcript</b> · 87%</span>
+</div>
+<div role="group" aria-label="Choose a view" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
+<button class="tab" type="button" data-view="lead" aria-pressed="true">Leadership view</button>
+<button class="tab" type="button" data-view="enable" aria-pressed="false">Enablement view</button>
+<button class="tab" type="button" data-view="all" aria-pressed="false">Full report</button>
+</div>
+</div>
+</section>
+
+<main>
+
+<section data-for="lead enable">
+<div class="sec">
+<div><span class="eyebrow">HEADLINE</span><h2 style="margin-top:8px">Three things to know</h2></div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div class="card" style="flex:1 1 300px"><span style="font-size:48px;font-weight:700;color:#006FE5;line-height:1">+3 pts</span><h3>Sentiment is up</h3><p>Positive conversations rose from 35% to 38%. Driven mostly by onboarding and training topics.</p></div>
+<div class="card" style="flex:1 1 300px"><span style="font-size:48px;font-weight:700;color:#006FE5;line-height:1">14%</span><h3>Competitor A is most mentioned</h3><p>Up from 11%. Most often raised alongside pricing questions.</p></div>
+<div class="card" style="flex:1 1 300px"><span style="font-size:48px;font-weight:700;color:#006FE5;line-height:1">4</span><h3>Opportunities need follow-up</h3><p>Open deals with a negative or competitive conversation this period. See the watch list.</p></div>
+</div>
+</div>
+</section>
+
+<section style="background:#FFFFFF" data-for="lead enable">
+<div class="sec">
+<div><span class="eyebrow">SENTIMENT</span><h2 style="margin-top:8px">How buyers feel</h2></div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:16px;font-weight:600">This period</div>
+<div class="bar" role="img" aria-label="This period: 38% positive, 34% neutral, 17% negative, 11% mixed">
+<span style="width:38%;background:#00F2A2;color:#1E1E1E">38%</span><span style="width:34%;background:#C8C8C8;color:#1E1E1E">34%</span><span style="width:17%;background:#F569FF;color:#1E1E1E">17%</span><span style="width:11%;background:#FFC500;color:#1E1E1E">11%</span>
+</div>
+<div style="font-size:16px;font-weight:600;margin-top:8px">Prior period</div>
+<div class="bar" style="height:36px" role="img" aria-label="Prior period: 35% positive, 34% neutral, 20% negative, 11% mixed">
+<span style="width:35%;background:#00F2A2;color:#1E1E1E">35%</span><span style="width:34%;background:#C8C8C8;color:#1E1E1E">34%</span><span style="width:20%;background:#F569FF;color:#1E1E1E">20%</span><span style="width:11%;background:#FFC500;color:#1E1E1E">11%</span>
+</div>
+<div class="legend"><span><i style="background:#00F2A2"></i>Positive</span><span><i style="background:#C8C8C8"></i>Neutral</span><span><i style="background:#F569FF"></i>Negative</span><span><i style="background:#FFC500"></i>Mixed</span></div>
+</div>
+<div class="tblwrap"><table class="tbl">
+<caption style="position:absolute;left:-9999px">Sentiment by region</caption>
+<thead><tr><th scope="col">Segment</th><th scope="col">Conversations</th><th scope="col">Positive</th><th scope="col">Change vs prior</th><th scope="col" style="width:30%">Share positive</th></tr></thead>
+<tbody>
+<tr><th scope="row" style="font-weight:600">AMER</th><td>640</td><td>40%</td><td>▲ +4 pts</td><td><div class="mini" role="img" aria-label="40 percent"><b style="width:40%"></b></div></td></tr>
+<tr><th scope="row" style="font-weight:600">EMEA</th><td>410</td><td>37%</td><td>▲ +2 pts</td><td><div class="mini" role="img" aria-label="37 percent"><b style="width:37%"></b></div></td></tr>
+<tr><th scope="row" style="font-weight:600">APAC</th><td>190</td><td>33%</td><td>▲ +1 pt</td><td><div class="mini" role="img" aria-label="33 percent"><b style="width:33%"></b></div></td></tr>
+</tbody></table></div>
+<p style="margin:0;font-size:14px;color:#4A4A4A">Segments with fewer than 10 conversations are hidden. Results never go down to an individual rep.</p>
+</div>
+</section>
+
+<section data-for="lead">
+<div class="sec">
+<div><span class="eyebrow">WATCH LIST</span><h2 style="margin-top:8px">Deals that need a look</h2></div>
+<div class="tblwrap"><table class="tbl">
+<caption style="position:absolute;left:-9999px">Open opportunities with a negative or competitive conversation</caption>
+<thead><tr><th scope="col">Opportunity</th><th scope="col">Stage</th><th scope="col">Amount</th><th scope="col">Signal</th><th scope="col">Owner team</th><th scope="col">Evidence</th></tr></thead>
+<tbody>
+<tr><th scope="row" style="font-weight:600">Account A · Expansion</th><td>Negotiation</td><td>$120k</td><td><span class="pill cmp">Competitive</span> Competitor A named</td><td>Enterprise East</td><td>CONV-0412</td></tr>
+<tr><th scope="row" style="font-weight:600">Account B · New business</th><td>Proposal</td><td>$85k</td><td><span class="pill neg">Negative</span> Budget concern</td><td>Mid-market West</td><td>CONV-0377</td></tr>
+<tr><th scope="row" style="font-weight:600">Account C · Renewal</th><td>Commit</td><td>$210k</td><td><span class="pill neg">Negative</span> Integration issue</td><td>Enterprise Central</td><td>CONV-0891</td></tr>
+<tr><th scope="row" style="font-weight:600">Account D · New business</th><td>Discovery</td><td>$60k</td><td><span class="pill cmp">Competitive</span> Competitor B in use today</td><td>Mid-market East</td><td>CONV-1032</td></tr>
+</tbody></table></div>
+</div>
+</section>
+
+<section style="background:#FFFFFF" data-for="enable">
+<div class="sec">
+<div><span class="eyebrow">COMPETITIVE</span><h2 style="margin-top:8px">Who comes up, and how</h2></div>
+<div class="tblwrap"><table class="tbl">
+<caption style="position:absolute;left:-9999px">Competitor mentions</caption>
+<thead><tr><th scope="col">Competitor</th><th scope="col">Conversations</th><th scope="col">Share</th><th scope="col">Negative when mentioned</th><th scope="col">Usual context</th></tr></thead>
+<tbody>
+<tr><th scope="row" style="font-weight:600">Competitor A</th><td>174</td><td>14%</td><td>31%</td><td>Price and packaging; evaluating alongside us</td></tr>
+<tr><th scope="row" style="font-weight:600">Competitor B</th><td>112</td><td>9%</td><td>22%</td><td>Already in use; ease of use</td></tr>
+<tr><th scope="row" style="font-weight:600">Competitor C</th><td>74</td><td>6%</td><td>18%</td><td>Cloud-native integrations</td></tr>
+</tbody></table></div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div class="card" style="flex:1 1 360px;background:#F0F0F0"><span class="eyebrow">TOOLS IN USE TODAY</span><h3>From enrichment</h3><p>Tool 1: 12% · Tool 2: 9% · Tool 3: 7% · Tool 4: 5%</p></div>
+<div class="card" style="flex:1 1 360px;background:#F0F0F0"><span class="eyebrow">WHAT BUYERS SAY</span><h3>In their words</h3>
+<div class="q">“We like the workflow side, but Competitor A quoted us a simpler package.”<small>CONV-0412 · Sample</small></div>
+<div class="q">“Getting this to talk to our cloud data platform is the real question.”<small>CONV-0891 · Sample</small></div>
+</div>
+</div>
+</div>
+</section>
+
+<section data-for="enable">
+<div class="sec">
+<div><span class="eyebrow">OBJECTIONS</span><h2 style="margin-top:8px">What keeps coming up</h2></div>
+<div class="tblwrap"><table class="tbl">
+<caption style="position:absolute;left:-9999px">Top objections</caption>
+<thead><tr><th scope="col">Theme</th><th scope="col">Share of negative or mixed conversations</th><th scope="col" style="width:28%">Relative size</th></tr></thead>
+<tbody>
+<tr><th scope="row" style="font-weight:600">Pricing and packaging</th><td>22%</td><td><div class="mini" role="img" aria-label="22 percent"><b style="width:22%"></b></div></td></tr>
+<tr><th scope="row" style="font-weight:600">Fit with their cloud data platform</th><td>17%</td><td><div class="mini" role="img" aria-label="17 percent"><b style="width:17%"></b></div></td></tr>
+<tr><th scope="row" style="font-weight:600">Time to value</th><td>13%</td><td><div class="mini" role="img" aria-label="13 percent"><b style="width:13%"></b></div></td></tr>
+<tr><th scope="row" style="font-weight:600">Who will own it internally</th><td>9%</td><td><div class="mini" role="img" aria-label="9 percent"><b style="width:9%"></b></div></td></tr>
+</tbody></table></div>
+</div>
+</section>
+
+<section style="background:#1E1E1E;color:#F0F0F0" data-for="enable">
+<div class="sec">
+<div><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">RECOMMENDED ACTIONS</span><h2 style="margin-top:8px">What enablement can do</h2></div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="font-size:18px;padding-top:8px"><b>Add a pricing talk track</b> against Competitor A. It appears in 31% of negative conversations. <span style="color:#A0A0A0">Evidence: CONV-0412, 0377, 0221</span></span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="font-size:18px;padding-top:8px"><b>Publish a one-page guide</b> on connecting to common cloud data platforms. <span style="color:#A0A0A0">Evidence: CONV-0891, 0654</span></span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="font-size:18px;padding-top:8px"><b>Share what works</b> in onboarding calls, where sentiment is highest. <span style="color:#A0A0A0">Evidence: CONV-0102, 0588</span></span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#00F2A2;color:#1E1E1E;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="font-size:18px;padding-top:8px"><b>Coach on ownership questions</b> early in discovery. <span style="color:#A0A0A0">Evidence: CONV-1032</span></span></div>
+</div>
+</div>
+</section>
+
+<section data-for="lead enable">
+<div class="sec">
+<div><span class="eyebrow">DATA NOTES</span><h2 style="margin-top:8px">How to read this</h2></div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div class="card" style="flex:1 1 300px"><h3>Coverage</h3><p>87% of conversations had a usable transcript. 13% were excluded as empty or too short.</p></div>
+<div class="card" style="flex:1 1 300px"><h3>Confidence</h3><p>Sentiment and competitor tags are model estimates. The agent disagreed with the recorded sentiment on 9% of conversations, listed in the appendix.</p></div>
+<div class="card" style="flex:1 1 300px"><h3>Definitions</h3><p>Fields and terms come from the DataHub definitions. Names and emails are masked before the model reads any text.</p></div>
+</div>
+<p style="margin:0;font-size:16px;color:#4A4A4A">Reviewed by a person before it is shared with leadership. <a href="conversation-insights-agent.html" style="color:#006FE5;font-weight:600;text-decoration:underline">Back to the agent page</a></p>
+</div>
+</section>
+
+</main>
+
+<footer style="background:#1E1E1E;color:#A0A0A0">
+<div style="max-width:1312px;margin:0 auto;padding:32px clamp(24px,5vw,64px);font-size:14px">GTM AI Transformation · Agent register · Contact: <a href="mailto:gtmai@alteryx.com" style="color:#F0F0F0;text-decoration:underline">gtmai@alteryx.com</a></div>
+</footer>
+
+</div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var secs=[].slice.call(document.querySelectorAll('[data-for]'));
+  function show(v){
+    tabs.forEach(function(t){t.setAttribute('aria-pressed',t.dataset.view===v?'true':'false');});
+    secs.forEach(function(s){s.hidden=!(v==='all'||s.dataset.for.split(' ').indexOf(v)>-1);});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.view);});});
+  show('lead');
+})();
+</script>
+</body>
+</html>

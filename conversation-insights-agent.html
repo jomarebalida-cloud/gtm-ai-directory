@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversation Insights Agent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
+</style>
+</head>
+<body>
+<div style="background:#F0F0F0;color:#1E1E1E;font-family:Inter, Helvetica, Arial, sans-serif;line-height:1.5">
+
+<header style="background:#1E1E1E;color:#F0F0F0">
+<div style="max-width:1312px;margin:0 auto;padding:12px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+<span style="font-size:18px;font-weight:700;letter-spacing:0.02em">GTM AI · Agent Register</span>
+<nav style="display:flex;flex-wrap:wrap;gap:24px">
+<a href="index.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Agents</a>
+<a href="how-we-work.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">How we work</a>
+<a href="request-an-agent.html" style="color:#F0F0F0;font-size:14px;min-height:44px;display:inline-flex;align-items:center">Request an agent</a>
+</nav>
+</div>
+</header>
+
+<section style="background:#1E1E1E;color:#F0F0F0;position:relative;overflow:hidden">
+<div aria-hidden="true" style="position:absolute;right:-160px;top:-200px;width:640px;height:640px;border-radius:50%;background:#006FE5"></div>
+<div aria-hidden="true" style="position:absolute;right:240px;bottom:56px;width:120px;height:120px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div aria-hidden="true" style="position:absolute;right:120px;bottom:160px;width:48px;height:48px;border-radius:50%;background:#F569FF"></div>
+<div style="position:relative;max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 96px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#A0A0A0">
+<a href="index.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Agent register</a>
+<span>/</span>
+<span style="color:#F0F0F0">Conversation Insights Agent</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span style="border:1px solid #00F2A2;color:#00F2A2;border-radius:999px;padding:4px 14px;font-size:14px;font-weight:600">Agent</span>
+<span style="border:1px solid #00F2A2;color:#00F2A2;border-radius:999px;padding:4px 14px;font-size:14px;font-weight:600">Stage 1 · Propose</span>
+</div>
+<h1 style="margin:0;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.05;max-width:900px">Conversation Insights Agent</h1>
+<p style="margin:0;font-size:24px;color:#D8D8D8;max-width:720px">Reads sales conversations in Snowflake, scores each one for sentiment and competitor mentions, and turns them into a report for leadership and enablement.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:8px">
+<a href="request-a-change.html?agent=conversation-insights-agent" style="border:2px solid #F0F0F0;color:#F0F0F0;font-size:18px;font-weight:600;min-height:48px;box-sizing:border-box;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">Request a change</a>
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start">
+<div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">ABOUT THIS AGENT</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">What it does</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Today, what buyers say in calls and chats stays buried in transcripts. This agent reads them in Snowflake, finds the DataHub definitions for each field, and reports how buyers feel and which competitors come up. It is read-only: it writes nothing back to Salesforce, and a person reviews every report before it is shared. This is a proposal at Stage 1.</p>
+<h3 style="margin:16px 0 0;font-size:24px;font-weight:700">How it works</h3>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="font-size:18px;padding-top:8px">Someone asks for a report, naming a period and a segment such as a region or a team.</span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="font-size:18px;padding-top:8px">The agent uses DataHub, through MCP, to confirm the right Snowflake views and what each field means.</span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="font-size:18px;padding-top:8px">It pulls conversations from Snowflake, through MCP, and masks names and emails before the model reads them.</span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="font-size:18px;padding-top:8px">It rates each conversation as positive, neutral, negative or mixed, with a reason and a short quote, and notes any competitor mentioned.</span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">5</span><span style="font-size:18px;padding-top:8px">It rolls the results up into a report where every claim links to its conversation ID.</span></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><span style="flex:0 0 44px;height:44px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center">6</span><span style="font-size:18px;padding-top:8px">A person on the enablement or GTM AI side reviews the report before it goes to leadership.</span></div>
+</div>
+</div>
+<div style="flex:0 1 560px;max-width:100%;overflow-x:auto;background:#FFFFFF;border:1px solid #D4D4D4;border-radius:24px;padding:20px;box-sizing:border-box">
+<div style="position:relative;width:520px;height:440px">
+<svg width="8" height="79" viewBox="0 0 8 79" preserveAspectRatio="none" style="position:absolute;left:256px;top:160px;width:8px;height:79px;overflow:visible;fill:none;stroke:#1E1E1E;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><defs><marker id="dc-arrow-head-filled-1" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#1E1E1E" stroke="none" style="stroke:none;fill:#1E1E1E;fill:context-stroke"/></marker></defs><path d="M 4 0 L 4 75" marker-end="url(#dc-arrow-head-filled-1)"></path></svg>
+<div style="position:absolute;left:40px;top:40px;width:440px;height:120px;box-sizing:border-box;padding:16px;display:flex;align-items:center;justify-content:center;text-align:center;background:#1E1E1E;color:#F0F0F0;border-radius:16px"><span><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">AGENT</span><br><b style="font-size:24px">Conversation Insights Agent</b></span></div>
+<div style="position:absolute;left:40px;top:240px;width:440px;height:160px;box-sizing:border-box;padding:16px;display:flex;align-items:flex-start;justify-content:center;text-align:center;background:#F0F0F0;border:1px solid #C8C8C8;border-radius:16px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">TOOLS</span></div>
+<div style="position:absolute;left:60px;top:296px;width:120px;height:80px;box-sizing:border-box;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#FFFFFF;border:1px solid #C8C8C8;border-radius:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg><span style="font-size:14px;font-weight:600">Snowflake</span></div>
+<div style="position:absolute;left:200px;top:296px;width:120px;height:80px;box-sizing:border-box;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#FFFFFF;border:1px solid #C8C8C8;border-radius:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span style="font-size:14px;font-weight:600">DataHub</span></div>
+<div style="position:absolute;left:340px;top:296px;width:120px;height:80px;box-sizing:border-box;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#FFFFFF;border:1px solid #C8C8C8;border-radius:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span style="font-size:14px;font-weight:600">MCP</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:#FFFFFF">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Agent details</h2>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHAT IT KNOWS</span><h3 style="margin:0;font-size:24px;font-weight:700">Data and definitions</h3><p style="margin:0;font-size:18px;color:#4A4A4A">One Mind conversation records, live chat transcripts, and Outreach-attributed tasks in Salesforce, plus account and opportunity context. Each input is defined in the semantic layer below.</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">EXAMPLE REQUEST</span><h3 style="margin:0;font-size:24px;font-weight:700">How to use it</h3><p style="margin:0;font-size:18px;color:#4A4A4A">“Give me conversation insights for EMEA for the last 30 days: sentiment trend, which competitors came up, and what enablement should act on.”</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHAT NEEDS A HUMAN</span><h3 style="margin:0;font-size:24px;font-weight:700">Approvals</h3><p style="margin:0;font-size:18px;color:#4A4A4A">A person reviews every report before it goes to leadership. Sentiment and competitor tags are model estimates, so each one shows its evidence and confidence.</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHO OWNS IT</span><h3 style="margin:0;font-size:24px;font-weight:700">Owner</h3><p style="margin:0;font-size:18px;color:#4A4A4A">[OWNER TBD]</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">SUCCESS MEASURE</span><h3 style="margin:0;font-size:24px;font-weight:700">How we measure impact</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Baseline: [BASELINE TBD]. Target: [TARGET TBD]. We plan to check agreement with human-labelled sentiment and competitor tags on a test set.</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">CONNECTIONS</span>
+<h3 style="margin:0;font-size:24px;font-weight:700">What it connects to</h3>
+<div style="display:flex;gap:12px;align-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg><span style="font-size:18px"><b>Snowflake</b> · where the conversations are queried</span></div>
+<div style="display:flex;gap:12px;align-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span style="font-size:18px"><b>DataHub</b> · definitions, owners, certification</span></div>
+<div style="display:flex;gap:12px;align-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span style="font-size:18px"><b>MCP</b> · how the agent reaches both</span></div>
+<div style="display:flex;gap:12px;align-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg><span style="font-size:18px"><b>Salesforce</b> · source of the records, through Fivetran</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">THE OUTPUT</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">What the report looks like</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A;max-width:760px">One report with two views. Both roll up to team, region and segment, never to an individual rep, and small groups are hidden so no quote can point to one person.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 360px;background:#1E1E1E;color:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">FOR LEADERSHIP</span><h3 style="margin:0;font-size:24px;font-weight:700">Direction and risk in a minute</h3><p style="margin:0;font-size:18px;color:#D8D8D8">A three-line headline, the sentiment trend against the prior period, competitor share, and a watch list of open opportunities with negative or competitive conversations. Monthly, or on request.</p></div>
+<div style="flex:1 1 360px;background:#1E1E1E;color:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">FOR ENABLEMENT</span><h3 style="margin:0;font-size:24px;font-weight:700">Material to act on</h3><p style="margin:0;font-size:18px;color:#D8D8D8">The objections that keep coming up, how buyers talk about competitors, evidence quotes, and recommended actions tied to that evidence. Weekly digest.</p></div>
+</div>
+<div style="background:#FFFFFF;border-radius:24px;padding:8px 32px;display:flex;flex-direction:column">
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Headline</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Three lines: sentiment movement, the competitor in focus, and how many conversations need follow-up.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Sentiment</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Positive, neutral, negative and mixed shares, the change against the prior period, the top drivers in each direction, and where the agent disagrees with the recorded sentiment.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Competitive</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Per competitor: conversations, share, sentiment when mentioned, and the usual context. Plus the tools prospects use today, and short buyer quotes.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Watch list</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Open opportunities with negative or competitive conversations, with stage, owner and next step.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Recommended actions</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Three to five, each tied to the evidence behind it.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Data notes</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Coverage, missing transcripts, excluded records, confidence, and links to the definitions used.</span></div>
+</div>
+<div><a href="conversation-insights-sample-report.html" style="background:#006FE5;color:#FFFFFF;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">See a sample report</a></div>
+</div>
+</section>
+
+<section style="background:#FFFFFF">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">SEMANTIC LAYER</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">The definitions behind the agent</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A;max-width:760px">What each input means and where it comes from. The views below are in the SALESFORCE_RAW schema in Snowflake and are described in DataHub.</p>
+</div>
+<div tabindex="0" aria-label="Semantic layer definitions, scrollable" style="background:#F0F0F0;border-radius:24px;padding:8px 32px;display:flex;flex-direction:column;max-height:360px;overflow-y:auto">
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #D4D4D4"><span style="flex:0 0 220px;font-size:18px;font-weight:700">One Mind conversations</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Conversation intelligence records: full transcript, summary, recorded sentiment, key topics, current tools in use, next steps, outcome, and BANT, SPICED and MEDDPICC fields. Linked to the account, contact and lead.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #D4D4D4"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Live chat transcripts</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Chat text with start and end times, response times, and lead, contact and account IDs.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #D4D4D4"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Outreach tasks</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Salesforce tasks carrying the attributed Outreach sequence name, call disposition and duration, and call sentiment where recorded.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #D4D4D4"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Accounts and opportunities</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Context for the watch list: account, stage, amount and owner.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #D4D4D4"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Sentiment</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">The agent's own rating per conversation (positive, neutral, negative, mixed), shown next to the recorded sentiment where one exists. [CONFIRM: how sentiment is recorded and which values it holds]</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Competitor mention</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">A named competitor or a tool the prospect uses today, with the context it was mentioned in. [COMPETITOR LIST TBD]</span></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHO OWNS IT</span><h3 style="margin:0;font-size:24px;font-weight:700">Definitions and upkeep</h3><p style="margin:0;font-size:18px;color:#4A4A4A">[OWNER TBD]. The source views sit in the Sales Ops domain in DataHub.</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">OPEN QUESTIONS</span><h3 style="margin:0;font-size:24px;font-weight:700">To confirm</h3><p style="margin:0;font-size:18px;color:#4A4A4A">[CONFIRM: whether Outreach message and chat text is stored in Snowflake beyond the Salesforce tasks] [CONFIRM: whether the model may read transcript text] [CONFIRM: read-only reporting, or also write back to Salesforce]</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">TO CERTIFY</span><h3 style="margin:0;font-size:24px;font-weight:700">Open definitions</h3><p style="margin:0;font-size:18px;color:#4A4A4A">[FIELD AND METRIC DEFINITIONS to confirm with Sales Ops and Data Science]</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Where it is in the process</h2>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<div style="flex:1 1 240px;background:#1E1E1E;color:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">YOU ARE HERE</span><h3 style="margin:0;font-size:24px;font-weight:700">1 Propose</h3><p style="margin:0;font-size:18px;color:#D8D8D8">Scored on value, feasibility, and risk; data checked.</p></div>
+<div style="flex:1 1 240px;background:#FFFFFF;border:1px solid #C8C8C8;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">NEXT</span><h3 style="margin:0;font-size:24px;font-weight:700">2 Stage</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Built and tested on sample data; analytics and tech sign off.</p></div>
+<div style="flex:1 1 240px;background:#FFFFFF;border:1px solid #C8C8C8;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">THEN</span><h3 style="margin:0;font-size:24px;font-weight:700">3 Pilot</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Small group; a person approves every output.</p></div>
+<div style="flex:1 1 240px;background:#FFFFFF;border:1px solid #C8C8C8;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">THEN</span><h3 style="margin:0;font-size:24px;font-weight:700">4 Deploy</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Wider rollout, permissions and logging on.</p></div>
+</div>
+</div>
+</section>
+
+<section style="background:#FFFFFF">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Guardrails on every agent</h2>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 300px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:24px;font-weight:700">Transparent</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Every insight shows its source conversation IDs and a confidence level.</p></div>
+<div style="flex:1 1 300px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:24px;font-weight:700">Reviewed</h3><p style="margin:0;font-size:18px;color:#4A4A4A">A person approves each report before it is shared with leadership.</p></div>
+<div style="flex:1 1 300px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:24px;font-weight:700">Permissioned and logged</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Read-only access limited to the views above, with names and emails masked and every query logged. [CONFIRM: access role and logging]</p></div>
+</div>
+</div>
+</section>
+
+<section style="background:#006FE5;color:#FFFFFF">
+<div style="max-width:1312px;margin:0 auto;padding:96px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Have a request for this agent?</h2>
+<p style="margin:0;font-size:24px">Bring it to the GTM AI team. We'll point you to the right door.</p>
+<a href="request-a-change.html?agent=conversation-insights-agent" style="background:#FFFFFF;color:#1E1E1E;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">Submit a request</a>
+</div>
+</section>
+
+<footer style="background:#1E1E1E;color:#A0A0A0">
+<div style="max-width:1312px;margin:0 auto;padding:32px clamp(24px,5vw,64px);font-size:14px">GTM AI Transformation · Agent register · Contact: <a href="mailto:gtmai@alteryx.com" style="color:#F0F0F0;text-decoration:underline">gtmai@alteryx.com</a></div>
+</footer>
+
+</div>
+</body>
+</html>
