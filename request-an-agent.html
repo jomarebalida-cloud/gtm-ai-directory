@@ -87,16 +87,8 @@ textarea.input{min-height:96px;resize:vertical}
 <div style="display:flex;gap:16px;align-items:flex-start">
 <span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span>
 <div class="field" style="flex:1 1 auto">
-<label class="label" for="idea">Describe your idea <span class="opt">(optional)</span></label>
-<textarea class="input" id="idea" placeholder="e.g. An agent that preps SEs for renewal calls using Salesforce and Gong"></textarea>
-</div>
-</div>
-
-<div style="display:flex;gap:16px;align-items:flex-start">
-<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>
-<div class="field" style="flex:1 1 auto">
 <label class="label" for="prompt-box">Copy this prompt</label>
-<textarea class="input" id="prompt-box" readonly style="min-height:440px;font-size:14px;background:#F0F0F0"></textarea>
+<textarea class="input" id="prompt-box" readonly style="min-height:500px;font-size:14px;background:#F0F0F0"></textarea>
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
 <button class="btn" type="button" id="copy-prompt" style="margin-top:4px">Copy prompt</button>
 </div>
@@ -104,24 +96,22 @@ textarea.input{min-height:96px;resize:vertical}
 </div>
 
 <div style="display:flex;gap:16px;align-items:flex-start">
-<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>
 <div class="field" style="flex:1 1 auto">
 <span class="label">Open Gemini and paste it</span>
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
 <a class="btn ghost" id="open-gem" href="https://gemini.google.com/app" target="_blank" rel="noopener">Open Gemini <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left:8px"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-<span class="help" style="flex:1 1 220px">Click in Gemini's chat box, press Ctrl+V, and send.</span>
+<span class="help" style="flex:1 1 220px">Click in Gemini's chat box, press Ctrl+V, and send. Gemini will ask a few questions about your idea.</span>
 </div>
 </div>
 </div>
 
 <div style="display:flex;gap:16px;align-items:flex-start">
-<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span>
+<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
 <div class="field" style="flex:1 1 auto">
-<label class="label" for="paste">Paste Gemini's answer</label>
+<label class="label" for="paste">Paste Gemini's final answer</label>
 <textarea class="input" id="paste" style="font-size:14px"></textarea>
-<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-<button class="btn ghost" type="button" id="fill">Fill the form</button>
-</div>
+<span class="help">The form fills in automatically when you paste.</span>
 </div>
 </div>
 
@@ -299,12 +289,11 @@ textarea.input{min-height:96px;resize:vertical}
   var status=document.getElementById('gem-status');
   function say(t){status.textContent=t;}
   function buildPrompt(){
-    var idea=document.getElementById('idea').value.trim()||'(none given - ask me one question first if you need more)';
     return [
       'You are helping me fill in an intake form to request a new internal AI agent for a go-to-market (sales, marketing, customer success) team.',
-      'My rough idea: '+idea,
+      'First, ask me short questions, one at a time and at most five, to understand my idea. Once you have enough, give me the final answer described below.',
       '',
-      'Reply in plain text only. No code, no JSON, no markdown, no bullets. Write exactly these nine lines, each starting with the label shown. Replace each [hint] with your answer and keep it on one line.',
+      'Your final answer must be plain text only. No code, no JSON, no markdown, no bullets. Write exactly these nine lines, each starting with the label shown. Replace each [hint] with your answer and keep it on one line.',
       '',
       'Agent name: [short name, max 60 characters]',
       'Goal: [one line, max 120 characters]',
@@ -339,7 +328,6 @@ textarea.input{min-height:96px;resize:vertical}
   }
   var promptBox=document.getElementById('prompt-box');
   function refreshPrompt(){promptBox.value=buildPrompt();}
-  document.getElementById('idea').addEventListener('input',refreshPrompt);
   refreshPrompt();
   function copyPrompt(){
     var p=promptBox.value;
@@ -367,8 +355,11 @@ textarea.input{min-height:96px;resize:vertical}
     }else el.value=v.trim().slice(0,el.maxLength>0?el.maxLength:v.length);
     return true;
   }
-  document.getElementById('fill').addEventListener('click',function(){
-    var j=parseAnswer(document.getElementById('paste').value);
+  var pasteBox=document.getElementById('paste'), fillTimer=null, lastRaw='';
+  function doFill(){
+    var raw=pasteBox.value;
+    if(!raw.trim()||raw===lastRaw)return;
+    var j=parseAnswer(raw);
     if(!Object.keys(j).length){say('Could not find the answer lines. Ask Gemini to reply with the labelled lines only.');return;}
     var filled=[];
     ['name','goal','func','problem','does','users','measure'].forEach(function(n){if(setText(n,j[n]))filled.push(n);});
@@ -381,16 +372,18 @@ textarea.input{min-height:96px;resize:vertical}
       if(any)filled.push('data');
     }
     if(typeof j.risk==='string'){
-      var r=form.querySelector('input[name=risk]'), hit=null;
+      var hit=null;
       [].forEach.call(form.querySelectorAll('input[name=risk]'),function(c){if(c.value.toLowerCase()===j.risk.trim().toLowerCase())hit=c;});
       if(hit){hit.checked=true;filled.push('risk');}
     }
     if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact labels.');return;}
+    lastRaw=raw;
     filled.forEach(function(n){var f=document.getElementById('f-'+n);f.classList.add('ai');f.classList.remove('invalid');});
     usedAI=true; counts();
-    say('Filled '+filled.length+' field'+(filled.length>1?'s':'')+'. Check each one, then add your name and email.');
+    say('Filled '+filled.length+' field'+(filled.length>1?'s':'')+' from the answer. Check each one, then add your name and email.');
     document.getElementById('f-name').scrollIntoView({behavior:'smooth',block:'center'});
-  });
+  }
+  pasteBox.addEventListener('input',function(){clearTimeout(fillTimer);fillTimer=setTimeout(doFill,600);});
 
   form.addEventListener('submit',function(e){
     e.preventDefault();
