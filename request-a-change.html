@@ -185,13 +185,21 @@ textarea.input{min-height:96px;resize:vertical}
 </form>
 
 <div id="done" hidden tabindex="-1" style="background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:20px">
-<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">ALMOST DONE</span>
-<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Your email is ready to send</h2>
-<p style="margin:0;font-size:18px;color:#4A4A4A">We opened your email app with the request filled in. Press send to deliver it to the GTM AI team. Reference: <b id="ref" style="color:#1E1E1E"></b></p>
-<p style="margin:0;font-size:18px;color:#4A4A4A">Nothing opened? Email <a href="mailto:gtmai@alteryx.com" style="color:#006FE5;font-weight:600;text-decoration:underline">gtmai@alteryx.com</a> with the details, or go back and try again.</p>
-<div style="display:flex;flex-wrap:wrap;gap:16px">
-<button class="btn" type="button" id="again">Back to the form</button>
-<a href="index.html" class="btn ghost">Back to the register</a>
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">CONTACT</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">GTM AI team</h2>
+<a href="mailto:gtmai@alteryx.com" style="color:#006FE5;font-size:24px;font-weight:600;text-decoration:underline;overflow-wrap:anywhere">gtmai@alteryx.com</a>
+<p style="margin:0;font-size:18px;color:#4A4A4A">Your request is drafted as an email to this address. Your reference is <b id="ref" style="color:#1E1E1E"></b>.</p>
+<div style="background:#F0F0F0;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:16px;font-weight:600">Use your own email instead</span>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<button class="btn" type="button" id="reopen">Open in email app</button>
+<button class="btn ghost" type="button" id="copy">Copy request details</button>
+</div>
+<span id="copy-status" role="status" aria-live="polite" class="help"></span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<button type="button" id="again" style="font:inherit;font-size:16px;font-weight:600;min-height:44px;padding:0;background:none;border:0;color:#006FE5;text-decoration:underline;cursor:pointer">Edit my request</button>
+<a href="index.html" style="color:#006FE5;font-size:16px;font-weight:600;min-height:44px;display:inline-flex;align-items:center;text-decoration:underline">Back to the register</a>
 </div>
 </div>
 </div>
@@ -220,7 +228,7 @@ textarea.input{min-height:96px;resize:vertical}
   var TYPES=[].map.call(form.querySelectorAll('input[name=type]'),function(c){return c.value;});
   var URG=[].map.call(form.querySelectorAll('input[name=urgency]'),function(c){return c.value;});
   var AGENTS=[].filter.call(agent.options,function(o){return o.value;}).map(function(o){return o.text;});
-  var usedAI=false;
+  var usedAI=false, mailUrl='', copyText='';
 
   var slug=new URLSearchParams(location.search).get('agent');
   if(slug){agent.value=slug;if(agent.value!==slug)agent.value='';}
@@ -357,7 +365,18 @@ textarea.input{min-height:96px;resize:vertical}
     document.getElementById('ref').textContent=ref;
     form.hidden=true;document.getElementById('gem').hidden=true;done.hidden=false;done.focus();
     window.scrollTo(0,0);
-    location.href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    mailUrl='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    copyText='To: '+TO+'\r\nSubject: '+subject+'\r\n\r\n'+body;
+    document.getElementById('copy-status').textContent='';
+    location.href=mailUrl;
+  });
+  document.getElementById('reopen').addEventListener('click',function(){location.href=mailUrl;});
+  document.getElementById('copy').addEventListener('click',function(){
+    var st=document.getElementById('copy-status');
+    function fail(){st.textContent='Could not copy automatically. Select the text from your email draft, or write to '+TO+'.';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(copyText).then(function(){st.textContent='Copied. Paste it into a new email.';},fail);
+    }else fail();
   });
   document.getElementById('again').addEventListener('click',function(){
     done.hidden=true;form.hidden=false;document.getElementById('gem').hidden=false;agent.focus();
