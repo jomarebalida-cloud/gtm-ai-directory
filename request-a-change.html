@@ -74,32 +74,6 @@ textarea.input{min-height:96px;resize:vertical}
 
 <div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
 
-<div id="gem" style="background:#FFFFFF;border:2px solid #1E1E1E;border-radius:24px;padding:clamp(24px,4vw,32px);display:flex;flex-direction:column;gap:16px">
-<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">NOT SURE WHAT TO WRITE?</span>
-<h2 style="margin:0;font-size:24px;font-weight:700">Get a head start with Gemini</h2>
-<div class="field">
-<label class="label" for="idea">What needs to change <span class="opt">(optional)</span></label>
-<textarea class="input" id="idea" placeholder="e.g. Personalyze drafts keep mentioning the wrong job title"></textarea>
-</div>
-<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-<button class="btn" type="button" id="open-gem">Open in Gemini <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button>
-<span class="help" style="flex:1 1 220px">Copies a prompt and opens Gemini. Paste it there, then paste the answer below.</span>
-</div>
-<div id="gem-fallback" hidden class="field">
-<label class="label" for="prompt-box">Copy this prompt into Gemini</label>
-<textarea class="input" id="prompt-box" readonly style="min-height:140px;font-size:14px"></textarea>
-</div>
-<div class="field">
-<label class="label" for="paste">Paste Gemini's answer</label>
-<textarea class="input" id="paste" style="font-size:14px"></textarea>
-</div>
-<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-<button class="btn ghost" type="button" id="fill">Fill the form</button>
-<span id="gem-status" class="help" role="status" aria-live="polite" style="flex:1 1 220px"></span>
-</div>
-<p class="help" style="margin:0"><b>Don't paste customer or confidential data into Gemini.</b> Review every field before you send.</p>
-</div>
-
 <form id="cr" novalidate style="background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:32px">
 
 <div class="field" id="f-agent">
@@ -226,10 +200,7 @@ textarea.input{min-height:96px;resize:vertical}
   var form=document.getElementById('cr'), done=document.getElementById('done');
   var agent=document.getElementById('agent');
   var ids=['agent','type','summary','change','impact','urgency','name','email'];
-  var TYPES=[].map.call(form.querySelectorAll('input[name=type]'),function(c){return c.value;});
-  var URG=[].map.call(form.querySelectorAll('input[name=urgency]'),function(c){return c.value;});
-  var AGENTS=[].filter.call(agent.options,function(o){return o.value;}).map(function(o){return o.text;});
-  var usedAI=false, mailUrl='', copyText='';
+  var mailUrl='', copyText='';
 
   var slug=new URLSearchParams(location.search).get('agent');
   if(slug){agent.value=slug;if(agent.value!==slug)agent.value='';}
@@ -254,91 +225,10 @@ textarea.input{min-height:96px;resize:vertical}
     var n=e.target.name;
     if(ids.indexOf(n)<0)return;
     var f=document.getElementById('f-'+n);
-    f.classList.remove('ai');
     if(f.classList.contains('invalid'))mark(n);
     counts();
   });
   counts();
-
-  /* Gemini helper */
-  var status=document.getElementById('gem-status');
-  function say(t){status.textContent=t;}
-  function buildPrompt(){
-    var idea=document.getElementById('idea').value.trim()||'(none given - ask me one question first if you need more)';
-    var cur=agent.value&&agent.value!=='not-sure'?agent.options[agent.selectedIndex].text:'';
-    return [
-      'You are helping me fill in a form asking the GTM AI team to change an existing internal AI agent used by sales and go-to-market teams.',
-      'What I want changed: '+idea,
-      cur?'Agent I am talking about: '+cur:'',
-      '',
-      'Reply in plain text only. No code, no JSON, no markdown, no bullets. Write exactly these six lines, each starting with the label shown. Replace each [hint] with your answer and keep it on one line.',
-      '',
-      'Agent: [one of '+AGENTS.join(' / ')+']',
-      'Type of change: [one of '+TYPES.join(' / ')+']',
-      'Short summary: [one line, max 100 characters]',
-      'What should change: [what happens now and what should happen instead, max 280 characters]',
-      'Who is affected and why it matters: [max 200 characters]',
-      'Urgency: [one of '+URG.join(' / ')+']',
-      '',
-      'Do not invent facts. If you are unsure, leave that line blank after the label.'
-    ].filter(function(l,i){return l!==''||i===3||i>=10;}).join('\n');
-  }
-  var LABELS={agent:'agent',type:'type of change',summary:'short summary',change:'what should change',impact:'who is affected and why it matters',urgency:'urgency'};
-  function parseAnswer(raw){
-    var out={},cur=null;
-    raw.split(/\r?\n/).forEach(function(line){
-      var t=line.replace(/[*_`#>]/g,'').replace(/^\s*(?:[-•]|\d+[.)])\s*/,'').trim();
-      if(!t)return;
-      var hit=null;
-      Object.keys(LABELS).forEach(function(k){
-        var m=t.match(new RegExp('^'+LABELS[k]+'\\s*[:\\-–—]\\s*(.*)$','i'));
-        if(m)hit={k:k,v:m[1].trim()};
-      });
-      if(hit){cur=hit.k;out[cur]=hit.v;}
-      else if(cur)out[cur]=(out[cur]+' '+t).trim();
-    });
-    ['agent','type','urgency'].forEach(function(k){if(out[k])out[k]=out[k].replace(/[.\s]+$/,'');});
-    return out;
-  }
-  document.getElementById('open-gem').addEventListener('click',function(){
-    var p=buildPrompt(), box=document.getElementById('prompt-box'), fb=document.getElementById('gem-fallback');
-    box.value=p;
-    var url='https://gemini.google.com/app?q='+encodeURIComponent(p), inUrl=url.length<=6000;
-    window.open(inUrl?url:'https://gemini.google.com/app','_blank','noopener');
-    var lead=inUrl?'Opened Gemini with your prompt. If the chat box is empty, paste it with Ctrl+V (it is also copied). ':'Prompt copied. Paste it into Gemini with Ctrl+V. ';
-    function manual(){fb.hidden=false;say(lead+'Could not copy automatically, so the prompt is shown above.');}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(p).then(function(){fb.hidden=true;say(lead+'Then paste Gemini\'s answer here.');},manual);
-    }else manual();
-  });
-  function eq(a,b){return String(a).trim().toLowerCase()===String(b).trim().toLowerCase();}
-  function setText(n,v){
-    if(typeof v!=='string'||!v.trim())return false;
-    var el=form.elements[n];
-    if(el.tagName==='SELECT'){
-      var m=[].filter.call(el.options,function(o){return o.value&&(eq(o.text,v)||eq(o.value,v));})[0];
-      if(!m)return false;el.value=m.value;
-    }else el.value=v.trim().slice(0,el.maxLength>0?el.maxLength:v.length);
-    return true;
-  }
-  function setRadio(n,v){
-    var hit=null;
-    [].forEach.call(form.querySelectorAll('input[name='+n+']'),function(c){if(eq(c.value,v))hit=c;});
-    if(hit)hit.checked=true;
-    return !!hit;
-  }
-  document.getElementById('fill').addEventListener('click',function(){
-    var j=parseAnswer(document.getElementById('paste').value);
-    if(!Object.keys(j).length){say('Could not find the answer lines. Ask Gemini to reply with the labelled lines only.');return;}
-    var filled=[];
-    ['agent','summary','change','impact'].forEach(function(n){if(setText(n,j[n]))filled.push(n);});
-    ['type','urgency'].forEach(function(n){if(typeof j[n]==='string'&&setRadio(n,j[n]))filled.push(n);});
-    if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact labels.');return;}
-    filled.forEach(function(n){var f=document.getElementById('f-'+n);f.classList.add('ai');f.classList.remove('invalid');});
-    usedAI=true;counts();
-    say('Filled '+filled.length+' field'+(filled.length>1?'s':'')+'. Check each one, then add your name and email.');
-    document.getElementById('f-agent').scrollIntoView({behavior:'smooth',block:'center'});
-  });
 
   form.addEventListener('submit',function(e){
     e.preventDefault();
@@ -361,10 +251,10 @@ textarea.input{min-height:96px;resize:vertical}
       'Example or link: '+(link||'None'),
       '',
       'Requester: '+val('name')+' ('+val('email')+')',
-      'Reference: '+ref+(usedAI?'\nDrafted with Gemini, reviewed by requester.':'')
+      'Reference: '+ref
     ].join('\r\n');
     document.getElementById('ref').textContent=ref;
-    form.hidden=true;document.getElementById('gem').hidden=true;done.hidden=false;done.focus();
+    form.hidden=true;done.hidden=false;done.focus();
     window.scrollTo(0,0);
     mailUrl='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     copyText='To: '+TO+'\r\nSubject: '+subject+'\r\n\r\n'+body;
@@ -380,7 +270,7 @@ textarea.input{min-height:96px;resize:vertical}
     }else fail();
   });
   document.getElementById('again').addEventListener('click',function(){
-    done.hidden=true;form.hidden=false;document.getElementById('gem').hidden=false;agent.focus();
+    done.hidden=true;form.hidden=false;agent.focus();
   });
 })();
 </script>
