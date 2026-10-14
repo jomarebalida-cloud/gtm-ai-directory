@@ -77,29 +77,54 @@ textarea.input{min-height:96px;resize:vertical}
 
 <div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
 
-<div id="gem" style="background:#FFFFFF;border:2px solid #1E1E1E;border-radius:24px;padding:clamp(24px,4vw,32px);display:flex;flex-direction:column;gap:16px">
+<div id="gem" style="background:#FFFFFF;border:2px solid #1E1E1E;border-radius:24px;padding:clamp(24px,4vw,32px);display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px">
 <span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">NOT SURE WHAT TO WRITE?</span>
 <h2 style="margin:0;font-size:24px;font-weight:700">Get a head start with Gemini</h2>
-<div class="field">
-<label class="label" for="idea">Your rough idea <span class="opt">(optional)</span></label>
+</div>
+
+<div style="display:flex;gap:16px;align-items:flex-start">
+<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span>
+<div class="field" style="flex:1 1 auto">
+<label class="label" for="idea">Describe your idea <span class="opt">(optional)</span></label>
 <textarea class="input" id="idea" placeholder="e.g. An agent that preps SEs for renewal calls using Salesforce and Gong"></textarea>
 </div>
+</div>
+
+<div style="display:flex;gap:16px;align-items:flex-start">
+<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>
+<div class="field" style="flex:1 1 auto">
+<label class="label" for="prompt-box">Copy this prompt</label>
+<textarea class="input" id="prompt-box" readonly style="min-height:260px;font-size:14px;background:#F0F0F0"></textarea>
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-<button class="btn" type="button" id="open-gem">Open in Gemini <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button>
-<span class="help" style="flex:1 1 220px">Copies a prompt and opens Gemini. Paste it there, then paste the answer below.</span>
+<button class="btn" type="button" id="copy-prompt">Copy prompt</button>
 </div>
-<div id="gem-fallback" hidden class="field">
-<label class="label" for="prompt-box">Copy this prompt into Gemini</label>
-<textarea class="input" id="prompt-box" readonly style="min-height:140px;font-size:14px"></textarea>
 </div>
-<div class="field">
+</div>
+
+<div style="display:flex;gap:16px;align-items:flex-start">
+<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+<div class="field" style="flex:1 1 auto">
+<span class="label">Open Gemini and paste it</span>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<a class="btn ghost" id="open-gem" href="https://gemini.google.com/app" target="_blank" rel="noopener">Open Gemini <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left:8px"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+<span class="help" style="flex:1 1 220px">Click in Gemini's chat box, press Ctrl+V, and send.</span>
+</div>
+</div>
+</div>
+
+<div style="display:flex;gap:16px;align-items:flex-start">
+<span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span>
+<div class="field" style="flex:1 1 auto">
 <label class="label" for="paste">Paste Gemini's answer</label>
 <textarea class="input" id="paste" style="font-size:14px"></textarea>
-</div>
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
 <button class="btn ghost" type="button" id="fill">Fill the form</button>
-<span id="gem-status" class="help" role="status" aria-live="polite" style="flex:1 1 220px"></span>
 </div>
+</div>
+</div>
+
+<span id="gem-status" class="help" role="status" aria-live="polite"></span>
 <p class="help" style="margin:0"><b>Don't paste customer or confidential data into Gemini.</b> Review every field before you send.</p>
 </div>
 
@@ -311,16 +336,26 @@ textarea.input{min-height:96px;resize:vertical}
     if(out.data)out.data=out.data.split(/,|;|\band\b/i).map(function(x){return x.replace(/[.\s]+$/,'').trim();}).filter(Boolean);
     return out;
   }
+  var promptBox=document.getElementById('prompt-box');
+  function refreshPrompt(){promptBox.value=buildPrompt();}
+  document.getElementById('idea').addEventListener('input',refreshPrompt);
+  refreshPrompt();
+  function copyPrompt(){
+    var p=promptBox.value;
+    if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(p);
+    promptBox.focus();promptBox.select();
+    try{return document.execCommand('copy')?Promise.resolve():Promise.reject();}catch(e){return Promise.reject(e);}
+  }
+  function copyFailed(){promptBox.focus();promptBox.select();say('Could not copy automatically. The prompt is selected: press Ctrl+C to copy it.');}
+  var copyBtn=document.getElementById('copy-prompt');
+  copyBtn.addEventListener('click',function(){
+    copyPrompt().then(function(){
+      copyBtn.textContent='Copied';say('Prompt copied. Next, open Gemini and paste it.');
+      setTimeout(function(){copyBtn.textContent='Copy prompt';},2500);
+    },copyFailed);
+  });
   document.getElementById('open-gem').addEventListener('click',function(){
-    var p=buildPrompt(), box=document.getElementById('prompt-box'), fb=document.getElementById('gem-fallback');
-    box.value=p;
-    var url='https://gemini.google.com/app?q='+encodeURIComponent(p), inUrl=url.length<=6000;
-    window.open(inUrl?url:'https://gemini.google.com/app','_blank','noopener');
-    var lead=inUrl?'Opened Gemini with your prompt. If the chat box is empty, paste it with Ctrl+V (it is also copied). ':'Prompt copied. Paste it into Gemini with Ctrl+V. ';
-    function manual(){fb.hidden=false;say(lead+'Could not copy automatically, so the prompt is shown above.');}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(p).then(function(){fb.hidden=true;say(lead+'Then paste Gemini\'s answer here.');},manual);
-    }else manual();
+    copyPrompt().then(function(){say('Prompt copied. Paste it into Gemini with Ctrl+V, then paste the answer here.');},copyFailed);
   });
   function setText(n,v){
     if(typeof v!=='string'||!v.trim())return false;
