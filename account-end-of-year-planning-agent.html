@@ -10,6 +10,14 @@ body{margin:0}
 a{text-decoration:none}
 a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 @media (max-width:900px){.deco{display:none}}
+.chip{display:inline-flex;align-items:center;border-radius:999px;padding:3px 12px;font-size:14px;font-weight:600;white-space:nowrap}
+.chip.ok{background:#00F2A2;color:#1E1E1E}
+.chip.val{background:#FFC500;color:#1E1E1E}
+.tblwrap{overflow-x:auto;border-radius:24px;border:1px solid #D4D4D4;background:#FFFFFF}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th,.tbl td{text-align:left;padding:16px 20px;font-size:16px;vertical-align:top}
+.tbl thead th{background:#1E1E1E;color:#F0F0F0;font-weight:700;white-space:nowrap}
+.tbl tbody tr:nth-child(even){background:#F0F0F0}
 </style>
 </head>
 <body>
@@ -39,6 +47,7 @@ a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 <div style="display:flex;flex-wrap:wrap;gap:8px">
 <span style="border:1px solid #00F2A2;color:#00F2A2;border-radius:999px;padding:4px 14px;font-size:14px;font-weight:600">Agent</span>
 <span style="border:1px solid #00F2A2;color:#00F2A2;border-radius:999px;padding:4px 14px;font-size:14px;font-weight:600">Stage 2 · Stage</span>
+<span style="border:1px solid #A0A0A0;color:#D8D8D8;border-radius:999px;padding:4px 14px 4px 10px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D8D8D8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Verification pending</span>
 </div>
 <h1 style="margin:0;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.05;max-width:900px">Account End of Year Planning Agent</h1>
 <p style="margin:0;font-size:24px;color:#D8D8D8;max-width:720px">Helps account teams plan the end of the year in Claude, using account, segmentation, and propensity data served through an MCP on DataHub and Snowflake.</p>
@@ -77,13 +86,49 @@ a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 </div>
 </section>
 
+<section>
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">THE OUTPUT</span>
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">What a plan looks like</h2>
+<p style="margin:0;font-size:18px;color:#4A4A4A;max-width:760px">A plan is read by the account team who act on it, by executives who allocate against it, and by analytics who check the model behind it. They all read the same plan. What makes that work is that every number carries where it came from and whether it has been signed off.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 300px;background:#FFFFFF;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:24px;font-weight:700">Every number names its source</h3><p style="margin:0;font-size:18px;color:#4A4A4A">A plan says which segmentation input each figure came from, so a reader can look it up in the semantic layer below.</p></div>
+<div style="flex:1 1 300px;background:#FFFFFF;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:24px;font-weight:700">Tied back to the operating model</h3><p style="margin:0;font-size:18px;color:#4A4A4A">The plan states where it matches the segmentation already shared with the TVPs, and where it has moved since.</p></div>
+<div style="flex:1 1 300px;background:#FFFFFF;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:24px;font-weight:700">Uncertainty is spelled out</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Inputs still in validation are listed with what changes in the plan if they move on sign-off.</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<h3 style="margin:0;font-size:24px;font-weight:700">What a plan contains</h3>
+<div style="background:#FFFFFF;border-radius:24px;padding:8px 32px;display:flex;flex-direction:column">
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Starting position</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Current ARR, open pipeline, renewal date, and propensity to buy.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">What it is built on</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Every segmentation input used, its value for this account, and who owns it.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Tie-out</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Where the plan matches the segmentation pack shared with the TVPs, and where it differs.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Priorities</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">The plays for the rest of the year, each naming the inputs it rests on.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">What would change</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Which priorities move if an input still in validation changes on sign-off.</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0"><span style="flex:0 0 220px;font-size:18px;font-weight:700">How it was built</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Definitions read from DataHub, model versions, what changed since the last run, and the analytics sign-off.</span></div>
+</div>
+</div></div>
+</section>
+
+
+<section style="background:#1E1E1E;color:#F0F0F0">
+<div style="max-width:1312px;margin:0 auto;padding:64px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between">
+<div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#00F2A2">AN EXAMPLE</span>
+<h2 style="margin:0;font-size:32px;font-weight:700;line-height:1.15">A worked plan, end to end</h2>
+<p style="margin:0;font-size:18px;color:#D8D8D8;max-width:620px">A full plan for one account, with sample values, showing how the parts above come together.</p>
+</div>
+<a href="account-eoy-sample-plan.html" style="color:#00F2A2;font-size:18px;font-weight:600;min-height:44px;display:inline-flex;align-items:center;gap:8px;text-decoration:underline">See an example plan <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00F2A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+</div>
+</section>
 <section style="background:#FFFFFF">
 <div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:40px">
 <h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Agent details</h2>
 <div style="display:flex;flex-wrap:wrap;gap:24px">
 <div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHAT IT KNOWS</span><h3 style="margin:0;font-size:24px;font-weight:700">Data and definitions</h3><p style="margin:0;font-size:18px;color:#4A4A4A">FY26 account hierarchies, vertical industry classification, and propensity-to-buy models. Each is defined in the semantic layer below.</p></div>
 <div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">EXAMPLE REQUEST</span><h3 style="margin:0;font-size:24px;font-weight:700">How to use it</h3><p style="margin:0;font-size:18px;color:#4A4A4A">“Build the end-of-year plan for [ACCOUNT].”</p></div>
-<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHAT NEEDS A HUMAN</span><h3 style="margin:0;font-size:24px;font-weight:700">Approvals</h3><p style="margin:0;font-size:18px;color:#4A4A4A">The planner reviews every plan before it is shared. Inputs still in validation are marked in the semantic layer.</p></div>
+<div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHAT NEEDS A HUMAN</span><h3 style="margin:0;font-size:24px;font-weight:700">Approvals</h3><p style="margin:0;font-size:18px;color:#4A4A4A">The planner reviews every plan before it is shared.</p></div>
 <div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">WHO OWNS IT</span><h3 style="margin:0;font-size:24px;font-weight:700">Owner</h3><p style="margin:0;font-size:18px;color:#4A4A4A">[OWNER NAME]. Segmentation inputs are built by [ANALYTICS OWNER].</p></div>
 <div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">SUCCESS MEASURE</span><h3 style="margin:0;font-size:24px;font-weight:700">How we measure impact</h3><p style="margin:0;font-size:18px;color:#4A4A4A">Baseline: [BASELINE]. Target: [TARGET].</p></div>
 <div style="flex:1 1 360px;background:#F0F0F0;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px">
@@ -102,7 +147,7 @@ a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 <div style="display:flex;flex-direction:column;gap:16px">
 <span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">SEMANTIC LAYER</span>
 <h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">The definitions behind the agent</h2>
-<p style="margin:0;font-size:18px;color:#4A4A4A;max-width:760px">What each segmentation input means and where it stands today. Defined once, these keep planning, operating model design, and other agents on the same numbers.</p>
+<p style="margin:0;font-size:18px;color:#4A4A4A;max-width:760px">What each segmentation input means. Defined once, these keep planning, operating model design, and other agents on the same numbers.</p>
 </div>
 <div tabindex="0" aria-label="Semantic layer definitions, scrollable" style="background:#FFFFFF;border-radius:24px;padding:8px 32px;display:flex;flex-direction:column;max-height:400px;overflow-y:auto">
 <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0;border-bottom:1px solid #E0E0E0;align-items:flex-start"><span style="flex:0 0 220px;font-size:18px;font-weight:700">Vertical industries</span><span style="flex:1 1 360px;font-size:18px;color:#4A4A4A">Initial industry classification is done and shared with the TVPs. Some field-driven refinement is expected, such as whether Professional Services stays within Tech and Tech Services or becomes its own vertical. AMER already uses it in org design.</span></div>
