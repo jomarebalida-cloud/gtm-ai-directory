@@ -1,6 +1,6 @@
 # GTM AI Directory
 
-A register of GTM AI agents. The directory lists each agent, and every agent has its own page covering what it does, how it works, what it connects to, who owns it, and where it sits in the Propose, Stage, Try, Deploy process.
+A register of GTM AI agents. The directory lists each agent, and every agent has its own page covering what it does, how it works, what it connects to, who owns it, and where it sits in the Propose, Stage, Pilot, Deploy process.
 
 **Live preview: https://jomarebalida-cloud.github.io/gtm-ai-directory/**
 
