@@ -278,20 +278,38 @@ textarea.input{min-height:96px;resize:vertical}
       'You are helping me fill in an intake form to request a new internal AI agent for a go-to-market (sales, marketing, customer success) team.',
       'My rough idea: '+idea,
       '',
-      'Reply with ONE JSON object only, no other text, using exactly these keys and limits:',
-      '{',
-      ' "name": string, max 60 chars - short agent name,',
-      ' "goal": string, max 120 chars - one-line goal,',
-      ' "func": one of '+JSON.stringify(FUNCS)+',',
-      ' "problem": string, max 280 chars - the problem today,',
-      ' "does": string, max 280 chars - what the agent should do, step by step,',
-      ' "data": array, any of '+JSON.stringify(DATA)+' - data it needs,',
-      ' "users": string, max 80 chars - who uses it and roughly how many,',
-      ' "measure": string, max 100 chars - how success would be measured,',
-      ' "risk": one of '+JSON.stringify(RISK)+' - whether it touches customer data or sends anything externally',
-      '}',
-      'Do not invent facts about my company. If unsure, leave a string empty.'
+      'Reply in plain text only. No code, no JSON, no markdown, no bullets. Write exactly these nine lines, each starting with the label shown. Replace each [hint] with your answer and keep it on one line.',
+      '',
+      'Agent name: [short name, max 60 characters]',
+      'Goal: [one line, max 120 characters]',
+      'Function: [one of '+FUNCS.join(', ')+']',
+      'Problem today: [max 280 characters]',
+      'What it should do: [the steps, max 280 characters]',
+      'Data it needs: [any of '+DATA.join(', ')+', separated by commas]',
+      'Who uses it: [who and roughly how many, max 80 characters]',
+      'Success measure: [how success would be measured, max 100 characters]',
+      'Customer data or external sends: [one of '+RISK.join(' / ')+']',
+      '',
+      'Do not invent facts about my company. If you are unsure, leave that line blank after the label.'
     ].join('\n');
+  }
+  var LABELS={name:'agent name',goal:'goal',func:'function',problem:'problem today',does:'what it should do',data:'data it needs',users:'who uses it',measure:'success measure',risk:'customer data or external sends'};
+  function parseAnswer(raw){
+    var out={},cur=null;
+    raw.split(/\r?\n/).forEach(function(line){
+      var t=line.replace(/[*_`#>]/g,'').replace(/^\s*(?:[-•]|\d+[.)])\s*/,'').trim();
+      if(!t)return;
+      var hit=null;
+      Object.keys(LABELS).forEach(function(k){
+        var m=t.match(new RegExp('^'+LABELS[k]+'\\s*[:\\-–—]\\s*(.*)$','i'));
+        if(m)hit={k:k,v:m[1].trim()};
+      });
+      if(hit){cur=hit.k;out[cur]=hit.v;}
+      else if(cur)out[cur]=(out[cur]+' '+t).trim();
+    });
+    ['func','risk'].forEach(function(k){if(out[k])out[k]=out[k].replace(/[.\s]+$/,'');});
+    if(out.data)out.data=out.data.split(/,|;|\band\b/i).map(function(x){return x.replace(/[.\s]+$/,'').trim();}).filter(Boolean);
+    return out;
   }
   document.getElementById('open-gem').addEventListener('click',function(){
     var p=buildPrompt(), box=document.getElementById('prompt-box'), fb=document.getElementById('gem-fallback');
@@ -314,9 +332,8 @@ textarea.input{min-height:96px;resize:vertical}
     return true;
   }
   document.getElementById('fill').addEventListener('click',function(){
-    var raw=document.getElementById('paste').value, m=raw.match(/\{[\s\S]*\}/), j;
-    if(!m){say('No JSON found. Ask Gemini to reply with the JSON object only.');return;}
-    try{j=JSON.parse(m[0]);}catch(e){say('That JSON could not be read. Ask Gemini to try again.');return;}
+    var j=parseAnswer(document.getElementById('paste').value);
+    if(!Object.keys(j).length){say('Could not find the answer lines. Ask Gemini to reply with the labelled lines only.');return;}
     var filled=[];
     ['name','goal','func','problem','does','users','measure'].forEach(function(n){if(setText(n,j[n]))filled.push(n);});
     if(Array.isArray(j.data)){
@@ -332,7 +349,7 @@ textarea.input{min-height:96px;resize:vertical}
       [].forEach.call(form.querySelectorAll('input[name=risk]'),function(c){if(c.value.toLowerCase()===j.risk.trim().toLowerCase())hit=c;});
       if(hit){hit.checked=true;filled.push('risk');}
     }
-    if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact keys.');return;}
+    if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact labels.');return;}
     filled.forEach(function(n){var f=document.getElementById('f-'+n);f.classList.add('ai');f.classList.remove('invalid');});
     usedAI=true; counts();
     say('Filled '+filled.length+' field'+(filled.length>1?'s':'')+'. Check each one, then add your name and email.');

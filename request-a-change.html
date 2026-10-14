@@ -261,17 +261,34 @@ textarea.input{min-height:96px;resize:vertical}
       'What I want changed: '+idea,
       cur?'Agent I am talking about: '+cur:'',
       '',
-      'Reply with ONE JSON object only, no other text, using exactly these keys and limits:',
-      '{',
-      ' "agent": one of '+JSON.stringify(AGENTS)+',',
-      ' "type": one of '+JSON.stringify(TYPES)+',',
-      ' "summary": string, max 100 chars - one-line summary,',
-      ' "change": string, max 280 chars - what happens now and what should happen instead,',
-      ' "impact": string, max 200 chars - who is affected and why it matters,',
-      ' "urgency": one of '+JSON.stringify(URG),
-      '}',
-      'Do not invent facts. If unsure, leave a string empty.'
-    ].filter(function(l,i){return l!==''||i===3;}).join('\n');
+      'Reply in plain text only. No code, no JSON, no markdown, no bullets. Write exactly these six lines, each starting with the label shown. Replace each [hint] with your answer and keep it on one line.',
+      '',
+      'Agent: [one of '+AGENTS.join(' / ')+']',
+      'Type of change: [one of '+TYPES.join(' / ')+']',
+      'Short summary: [one line, max 100 characters]',
+      'What should change: [what happens now and what should happen instead, max 280 characters]',
+      'Who is affected and why it matters: [max 200 characters]',
+      'Urgency: [one of '+URG.join(' / ')+']',
+      '',
+      'Do not invent facts. If you are unsure, leave that line blank after the label.'
+    ].filter(function(l,i){return l!==''||i===3||i>=10;}).join('\n');
+  }
+  var LABELS={agent:'agent',type:'type of change',summary:'short summary',change:'what should change',impact:'who is affected and why it matters',urgency:'urgency'};
+  function parseAnswer(raw){
+    var out={},cur=null;
+    raw.split(/\r?\n/).forEach(function(line){
+      var t=line.replace(/[*_`#>]/g,'').replace(/^\s*(?:[-•]|\d+[.)])\s*/,'').trim();
+      if(!t)return;
+      var hit=null;
+      Object.keys(LABELS).forEach(function(k){
+        var m=t.match(new RegExp('^'+LABELS[k]+'\\s*[:\\-–—]\\s*(.*)$','i'));
+        if(m)hit={k:k,v:m[1].trim()};
+      });
+      if(hit){cur=hit.k;out[cur]=hit.v;}
+      else if(cur)out[cur]=(out[cur]+' '+t).trim();
+    });
+    ['agent','type','urgency'].forEach(function(k){if(out[k])out[k]=out[k].replace(/[.\s]+$/,'');});
+    return out;
   }
   document.getElementById('open-gem').addEventListener('click',function(){
     var p=buildPrompt(), box=document.getElementById('prompt-box'), fb=document.getElementById('gem-fallback');
@@ -301,13 +318,12 @@ textarea.input{min-height:96px;resize:vertical}
     return !!hit;
   }
   document.getElementById('fill').addEventListener('click',function(){
-    var raw=document.getElementById('paste').value, m=raw.match(/\{[\s\S]*\}/), j;
-    if(!m){say('No JSON found. Ask Gemini to reply with the JSON object only.');return;}
-    try{j=JSON.parse(m[0]);}catch(e){say('That JSON could not be read. Ask Gemini to try again.');return;}
+    var j=parseAnswer(document.getElementById('paste').value);
+    if(!Object.keys(j).length){say('Could not find the answer lines. Ask Gemini to reply with the labelled lines only.');return;}
     var filled=[];
     ['agent','summary','change','impact'].forEach(function(n){if(setText(n,j[n]))filled.push(n);});
     ['type','urgency'].forEach(function(n){if(typeof j[n]==='string'&&setRadio(n,j[n]))filled.push(n);});
-    if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact keys.');return;}
+    if(!filled.length){say('Nothing matched the form fields. Ask Gemini to use the exact labels.');return;}
     filled.forEach(function(n){var f=document.getElementById('f-'+n);f.classList.add('ai');f.classList.remove('invalid');});
     usedAI=true;counts();
     say('Filled '+filled.length+' field'+(filled.length>1?'s':'')+'. Check each one, then add your name and email.');
