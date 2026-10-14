@@ -41,6 +41,7 @@ textarea.input{min-height:96px;resize:vertical}
 .row>.field{flex:1 1 240px}
 .sec{font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A;display:flex;align-items:center;gap:12px}
 .sec b{width:32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;display:inline-flex;align-items:center;justify-content:center;letter-spacing:0}
+@media (max-width:900px){.deco{display:none}}
 </style>
 </head>
 <body>
@@ -58,8 +59,8 @@ textarea.input{min-height:96px;resize:vertical}
 </header>
 
 <section style="background:#1E1E1E;color:#F0F0F0;position:relative;overflow:hidden">
-<div aria-hidden="true" style="position:absolute;right:-160px;top:-200px;width:640px;height:640px;border-radius:50%;background:linear-gradient(45deg,#FFC500,#F569FF)"></div>
-<div aria-hidden="true" style="position:absolute;right:240px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div aria-hidden="true" class="deco" style="position:absolute;right:-300px;top:-200px;width:640px;height:640px;border-radius:50%;background:linear-gradient(45deg,#FFC500,#F569FF)"></div>
+<div aria-hidden="true" class="deco" style="position:absolute;right:240px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
 <div style="position:relative;max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 80px;display:flex;flex-direction:column;gap:24px">
 <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#A0A0A0">
 <a href="index.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Agent register</a>
@@ -95,9 +96,9 @@ textarea.input{min-height:96px;resize:vertical}
 <span style="flex:0 0 32px;height:32px;border-radius:50%;background:#1E1E1E;color:#00F2A2;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>
 <div class="field" style="flex:1 1 auto">
 <label class="label" for="prompt-box">Copy this prompt</label>
-<textarea class="input" id="prompt-box" readonly style="min-height:260px;font-size:14px;background:#F0F0F0"></textarea>
+<textarea class="input" id="prompt-box" readonly style="min-height:440px;font-size:14px;background:#F0F0F0"></textarea>
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-<button class="btn" type="button" id="copy-prompt">Copy prompt</button>
+<button class="btn" type="button" id="copy-prompt" style="margin-top:4px">Copy prompt</button>
 </div>
 </div>
 </div>

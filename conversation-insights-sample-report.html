@@ -34,6 +34,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #00F2A2;outline-offset:2p
 .pill{display:inline-block;border-radius:999px;padding:2px 12px;font-size:14px;font-weight:600;background:#F0F0F0;color:#1E1E1E;border:1px solid #C8C8C8}
 .pill.neg{background:#1E1E1E;color:#F569FF;border-color:#1E1E1E}
 .pill.cmp{background:#1E1E1E;color:#FFC500;border-color:#1E1E1E}
+@media (max-width:900px){.deco{display:none}}
 </style>
 </head>
 <body>
@@ -55,8 +56,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #00F2A2;outline-offset:2p
 </div>
 
 <section style="background:#1E1E1E;color:#F0F0F0;position:relative;overflow:hidden">
-<div aria-hidden="true" style="position:absolute;right:-160px;top:-220px;width:600px;height:600px;border-radius:50%;background:#006FE5"></div>
-<div aria-hidden="true" style="position:absolute;right:200px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div aria-hidden="true" class="deco" style="position:absolute;right:-160px;top:-220px;width:600px;height:600px;border-radius:50%;background:#006FE5"></div>
+<div aria-hidden="true" class="deco" style="position:absolute;right:200px;bottom:40px;width:96px;height:96px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
 <div style="position:relative;max-width:1312px;margin:0 auto;padding:48px clamp(24px,5vw,64px) 64px;display:flex;flex-direction:column;gap:20px">
 <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#A0A0A0">
 <a href="index.html" style="color:#A0A0A0;min-height:44px;display:inline-flex;align-items:center">Agent register</a><span>/</span>
