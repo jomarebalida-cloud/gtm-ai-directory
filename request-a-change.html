@@ -276,10 +276,12 @@ textarea.input{min-height:96px;resize:vertical}
   document.getElementById('open-gem').addEventListener('click',function(){
     var p=buildPrompt(), box=document.getElementById('prompt-box'), fb=document.getElementById('gem-fallback');
     box.value=p;
-    window.open('https://gemini.google.com/app','_blank','noopener');
-    function manual(){fb.hidden=false;box.focus();box.select();say('Copy the prompt above and paste it into Gemini.');}
+    var url='https://gemini.google.com/app?q='+encodeURIComponent(p), inUrl=url.length<=6000;
+    window.open(inUrl?url:'https://gemini.google.com/app','_blank','noopener');
+    var lead=inUrl?'Opened Gemini with your prompt. If the chat box is empty, paste it with Ctrl+V (it is also copied). ':'Prompt copied. Paste it into Gemini with Ctrl+V. ';
+    function manual(){fb.hidden=false;say(lead+'Could not copy automatically, so the prompt is shown above.');}
     if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(p).then(function(){fb.hidden=true;say('Prompt copied. Paste it into Gemini, then paste the answer here.');},manual);
+      navigator.clipboard.writeText(p).then(function(){fb.hidden=true;say(lead+'Then paste Gemini\'s answer here.');},manual);
     }else manual();
   });
   function eq(a,b){return String(a).trim().toLowerCase()===String(b).trim().toLowerCase();}
