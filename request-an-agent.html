@@ -174,7 +174,11 @@ textarea.input{min-height:96px;resize:vertical}
 <label class="choice pill"><input type="checkbox" name="data" value="Gong"><span>Gong</span></label>
 <label class="choice pill"><input type="checkbox" name="data" value="Other"><span>Other</span></label>
 </div>
-<span class="err" role="alert">Pick at least one.</span>
+<div id="other-wrap" hidden style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+<label class="label" for="dataother">Other data source <span class="opt">· separate several with commas</span></label>
+<input class="input" id="dataother" name="dataother" maxlength="100" placeholder="For example, Zendesk, Notion" autocomplete="off">
+</div>
+<span class="err" id="data-err" role="alert">Pick at least one.</span>
 </div>
 
 <div class="field" id="f-users">
@@ -259,18 +263,30 @@ textarea.input{min-height:96px;resize:vertical}
   var RISK=['No','Internal only','Yes, external or customer-facing'];
   var usedAI=false;
 
+  var otherBox=form.querySelector('input[name=data][value=Other]');
+  var otherWrap=document.getElementById('other-wrap');
+  var otherIn=document.getElementById('dataother');
+  function otherText(){return otherIn.value.replace(/\s+/g,' ').trim();}
+  function showOther(){otherWrap.hidden=!otherBox.checked;}
   function vals(n){
-    if(n==='data')return [].map.call(form.querySelectorAll('input[name=data]:checked'),function(c){return c.value;});
+    if(n==='data')return [].map.call(form.querySelectorAll('input[name=data]:checked'),function(c){
+      return c.value==='Other'&&otherText()?'Other: '+otherText():c.value;
+    });
     if(n==='risk'){var c=form.querySelector('input[name=risk]:checked');return c?c.value:'';}
     return form.elements[n].value.trim();
   }
   function ok(n){
     var v=vals(n);
     if(!v||!v.length)return false;
+    if(n==='data'&&otherBox.checked&&!otherText())return false;
     if(n==='email')return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
     return true;
   }
-  function mark(n){var f=document.getElementById('f-'+n);f.classList.toggle('invalid',!ok(n));return ok(n);}
+  function mark(n){
+    var f=document.getElementById('f-'+n);
+    if(n==='data')document.getElementById('data-err').textContent=(otherBox.checked&&!otherText()&&vals('data').length)?'Name the other data source.':'Pick at least one.';
+    f.classList.toggle('invalid',!ok(n));return ok(n);
+  }
   function counts(){
     [].forEach.call(form.querySelectorAll('[data-count]'),function(t){
       t.parentNode.querySelector('.count').textContent=t.value.length+' / '+t.maxLength;
@@ -278,6 +294,7 @@ textarea.input{min-height:96px;resize:vertical}
   }
   form.addEventListener('input',function(e){
     var n=e.target.name;
+    if(n==='dataother')n='data';
     if(ids.indexOf(n)<0)return;
     var f=document.getElementById('f-'+n);
     f.classList.remove('ai');
@@ -285,6 +302,12 @@ textarea.input{min-height:96px;resize:vertical}
     counts();
   });
   counts();
+  otherBox.addEventListener('change',function(){
+    showOther();
+    if(otherBox.checked)otherIn.focus();
+    else{otherIn.value='';}
+    if(document.getElementById('f-data').classList.contains('invalid'))mark('data');
+  });
 
   /* Gemini helper */
   var status=document.getElementById('gem-status');
@@ -301,7 +324,7 @@ textarea.input{min-height:96px;resize:vertical}
       'Function: [one of '+FUNCS.join(', ')+']',
       'Problem today: [max 280 characters]',
       'What it should do: [the steps, max 280 characters]',
-      'Data it needs: [any of '+DATA.join(', ')+', separated by commas]',
+      'Data it needs: [any of '+DATA.join(', ')+', separated by commas. If it needs a source not on this list, name it in plain words]',
       'Who uses it: [who and roughly how many, max 80 characters]',
       'Success measure: [how success would be measured, max 100 characters]',
       'Customer data or external sends: [one of '+RISK.join(' / ')+']',
@@ -365,11 +388,16 @@ textarea.input{min-height:96px;resize:vertical}
     var filled=[];
     ['name','goal','func','problem','does','users','measure'].forEach(function(n){if(setText(n,j[n]))filled.push(n);});
     if(Array.isArray(j.data)){
-      var any=false;
+      var any=false, known=[];
       [].forEach.call(form.querySelectorAll('input[name=data]'),function(c){
         var on=j.data.some(function(x){return String(x).toLowerCase()===c.value.toLowerCase();});
-        c.checked=on; any=any||on;
+        c.checked=on; any=any||on; known.push(c.value.toLowerCase());
       });
+      var custom=j.data.filter(function(x){return known.indexOf(String(x).toLowerCase())<0;});
+      if(custom.length){
+        otherBox.checked=true; otherIn.value=custom.join(', ').slice(0,otherIn.maxLength); any=true;
+      }else if(!otherBox.checked){otherIn.value='';}
+      showOther();
       if(any)filled.push('data');
     }
     if(typeof j.risk==='string'){
@@ -390,7 +418,11 @@ textarea.input{min-height:96px;resize:vertical}
     e.preventDefault();
     var first=null;
     ids.forEach(function(n){if(!mark(n)&&!first)first=n;});
-    if(first){var el=form.querySelector('[name='+first+']');el.focus();return;}
+    if(first){
+      var el=form.querySelector('[name='+first+']');
+      if(first==='data'&&otherBox.checked&&!otherText())el=otherIn;
+      el.focus();return;
+    }
     var d=new Date(),p=function(x){return String(x).length<2?'0'+x:x;};
     var ref='AR-'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
     var subject='['+ref+'] Agent request: '+vals('name')+' - '+vals('goal');
