@@ -7,16 +7,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 body{margin:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 a{text-decoration:none}
 a:focus-visible,button:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 section[id]{scroll-margin-top:16px}
-.door{flex:1 1 300px;max-width:420px;box-sizing:border-box;background:#FFFFFF;border:1px solid #D4D4D4;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px;color:#1E1E1E}
+.door{flex:1 1 300px;max-width:420px;box-sizing:border-box;background:#FFFFFF;border:1px solid #D4D4D4;border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:16px;min-height:260px;color:#1E1E1E}
 .door:hover{border-color:#1E1E1E}
 .door:focus-visible{outline:3px solid #006FE5;outline-offset:2px}
 .door h3{margin:0;font-size:24px;font-weight:700;line-height:1.2}
 .door p{margin:0;font-size:18px;color:#4A4A4A}
-.door .go{margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600}
+.door .go{margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600}
 .field{display:flex;flex-direction:column;gap:8px;min-width:0}
 .label{font-size:16px;font-weight:600}
 .opt{font-weight:400;color:#4A4A4A}
@@ -75,7 +76,7 @@ textarea.input{min-height:96px;resize:vertical}
 <span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">PICK YOUR DOOR</span>
 <h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">What do you need?</h2>
 </div>
-<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch">
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:stretch">
 
 <a class="door" href="request-an-agent.html">
 <h3>Suggest a new agent</h3>
