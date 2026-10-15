@@ -11,6 +11,16 @@ a{text-decoration:none}
 a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 .deco{opacity:0.22}
 @media (max-width:900px){.deco{display:none}}
+.dd{position:relative;display:inline-block}
+.dd-trigger{font-family:inherit;cursor:pointer;border:0;background:#00F2A2;color:#1E1E1E;font-size:18px;font-weight:600;min-height:48px;box-sizing:border-box;padding:0 24px;border-radius:8px;display:inline-flex;align-items:center;gap:10px}
+.dd-trigger:focus-visible{outline:3px solid #006FE5;outline-offset:2px}
+.dd-caret{transition:transform .15s ease}
+.dd[data-open="true"] .dd-caret{transform:rotate(180deg)}
+.dd-menu{display:none;position:absolute;left:0;top:calc(100% + 8px);min-width:264px;box-sizing:border-box;background:#FFFFFF;border:1px solid #D4D4D4;border-radius:12px;padding:8px;box-shadow:0 12px 32px rgba(0,0,0,0.32);z-index:30}
+.dd[data-open="true"] .dd-menu{display:block}
+.dd-item{display:flex;align-items:center;gap:12px;min-height:44px;box-sizing:border-box;padding:10px 14px;border-radius:8px;color:#1E1E1E;font-size:18px;font-weight:600}
+.dd-item:hover,.dd-item:focus-visible{background:#F0F0F0}
+.dd-item:focus-visible{outline-color:#006FE5}
 </style>
 </head>
 <body>
@@ -28,10 +38,12 @@ a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 </div>
 </header>
 
-<section style="background:#FFFFFF;color:#1E1E1E;position:relative;overflow:hidden">
+<section style="background:#FFFFFF;color:#1E1E1E;position:relative">
+<div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden">
 <div aria-hidden="true" class="deco" style="position:absolute;right:-160px;top:-200px;width:640px;height:640px;border-radius:50%;background:#006FE5"></div>
 <div aria-hidden="true" class="deco" style="position:absolute;right:240px;bottom:56px;width:120px;height:120px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
 <div aria-hidden="true" class="deco" style="position:absolute;right:120px;bottom:160px;width:48px;height:48px;border-radius:50%;background:#F569FF"></div>
+</div>
 <div style="position:relative;max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 96px;display:flex;flex-direction:column;gap:24px">
 <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:#4A4A4A">
 <span style="color:#1E1E1E">Personalyze AI Outreach Agent</span>
@@ -44,7 +56,14 @@ a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 <h1 style="margin:0;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.05;max-width:900px">Personalyze AI Outreach Agent</h1>
 <p style="margin:0;font-size:24px;color:#4A4A4A;max-width:720px">Turns Salesforce, Marketo, and LinkedIn data into personalized email drafts and LinkedIn messages inside Outreach tasks, so reps spend less time on research and send a higher volume of personalized outreach.</p>
 <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:8px">
-<a href="#" style="background:#006FE5;color:#FFFFFF;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">Open in Outreach</a>
+<div class="dd" data-open="false">
+<button type="button" class="dd-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="open-agent-menu">Open the agent<svg class="dd-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+<div class="dd-menu" id="open-agent-menu" role="menu" aria-label="Open the agent in">
+<a class="dd-item" role="menuitem" href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg>Open in MCP</a>
+<a class="dd-item" role="menuitem" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c0 5.52 4.48 10 10 10-5.52 0-10 4.48-10 10 0-5.52-4.48-10-10-10 5.52 0 10-4.48 10-10z"/></svg>Open in Gemini</a>
+<a class="dd-item" role="menuitem" href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Open in Outreach</a>
+</div>
+</div>
 <a href="request-a-change.html?agent=personalyze-ai-outreach-agent" style="border:2px solid #F0F0F0;color:#1E1E1E;font-size:18px;font-weight:600;min-height:48px;box-sizing:border-box;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">Request a change</a>
 </div>
 </div>
@@ -157,5 +176,34 @@ a:focus-visible{outline:3px solid #00F2A2;outline-offset:2px}
 </footer>
 
 </div>
+<script>
+(function(){
+  document.querySelectorAll('.dd').forEach(function(dd){
+    var trigger = dd.querySelector('.dd-trigger');
+    var items = Array.prototype.slice.call(dd.querySelectorAll('.dd-item'));
+    function setOpen(open, focusIndex){
+      dd.dataset.open = open ? 'true' : 'false';
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open && typeof focusIndex === 'number' && items[focusIndex]) items[focusIndex].focus();
+    }
+    function close(refocus){ setOpen(false); if (refocus) trigger.focus(); }
+    trigger.addEventListener('click', function(){ setOpen(dd.dataset.open !== 'true'); });
+    trigger.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowDown'){ e.preventDefault(); setOpen(true, 0); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); setOpen(true, items.length - 1); }
+    });
+    dd.addEventListener('keydown', function(e){
+      if (e.key === 'Escape'){ close(true); return; }
+      var i = items.indexOf(document.activeElement);
+      if (i === -1) return;
+      if (e.key === 'ArrowDown'){ e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      else if (e.key === 'Tab'){ close(false); }
+    });
+    document.addEventListener('click', function(e){ if (!dd.contains(e.target)) close(false); });
+    dd.addEventListener('focusout', function(e){ if (!dd.contains(e.relatedTarget)) close(false); });
+  });
+})();
+</script>
 </body>
 </html>
