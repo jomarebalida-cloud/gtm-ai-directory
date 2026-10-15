@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent maintenance FAQ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+a{text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #006FE5;outline-offset:2px}
+.deco{opacity:0.22}
+.chip{font:inherit;font-size:16px;font-weight:600;min-height:44px;padding:0 20px;border-radius:999px;border:2px solid #1E1E1E;background:#FFFFFF;color:#1E1E1E;cursor:pointer}
+.chip[aria-pressed="true"]{background:#1E1E1E;color:#FFFFFF}
+.q{background:#FFFFFF;border-radius:16px;border:1px solid #D4D4D4;margin:0 0 12px}
+.q[open]{border-color:#1E1E1E}
+.q summary{list-style:none;cursor:pointer;padding:20px 24px;font-size:20px;font-weight:600;line-height:1.35;display:flex;gap:16px;align-items:flex-start;justify-content:space-between;border-radius:16px}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:"+";flex:0 0 32px;height:32px;border-radius:50%;background:#F0F0F0;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.q[open] summary::after{content:"\2212";background:#1E1E1E;color:#00F2A2}
+.ans{padding:0 24px 24px;font-size:18px;color:#4A4A4A;max-width:820px}
+.ans p{margin:0 0 12px}
+.ans p:last-child{margin-bottom:0}
+.ans code{font-size:16px;background:#F0F0F0;border-radius:6px;padding:2px 6px}
+.pill{display:inline-block;font-size:13px;font-weight:700;letter-spacing:0.04em;border-radius:999px;padding:2px 12px;margin-top:4px}
+.pill.s{background:#00F2A2;color:#1E1E1E}
+.pill.p{background:#E0E0E0;color:#1E1E1E}
+.grp{margin:0 0 40px}
+.grp h3{margin:0 0 16px;font-size:24px;font-weight:700}
+.toc a{color:#1E1E1E;font-size:16px;font-weight:600;border-bottom:2px solid #006FE5}
+@media (max-width:900px){.deco{display:none}}
+@media (max-width:560px){.q summary{font-size:18px;padding:16px 18px}.ans{padding:0 18px 20px;font-size:17px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div style="background:#F0F0F0;color:#1E1E1E;font-family:Inter, Helvetica, Arial, sans-serif;line-height:1.5">
+
+<header style="background:#FFFFFF;border-bottom:1px solid #E0E0E0">
+<div style="max-width:1312px;margin:0 auto;padding:12px clamp(24px,5vw,64px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+<span style="display:inline-flex;align-items:center"><img src="Alteryx.png" alt="Alteryx" width="600" height="186" style="width:150px;height:auto;display:block"></span>
+<nav style="display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+<a href="index.html" style="color:#1E1E1E;font-size:14px;font-weight:600;min-height:44px;display:inline-flex;align-items:center">Agents</a>
+<a href="how-we-work.html" style="color:#1E1E1E;font-size:14px;font-weight:600;min-height:44px;display:inline-flex;align-items:center">How we work</a>
+<a href="talk-to-the-team.html" style="color:#1E1E1E;font-size:14px;font-weight:600;min-height:44px;display:inline-flex;align-items:center">Talk to the team</a>
+<a href="request-an-agent.html" style="background:#006FE5;color:#FFFFFF;font-size:14px;font-weight:600;min-height:44px;padding:0 20px;border-radius:8px;display:inline-flex;align-items:center">Request an agent</a>
+</nav>
+</div>
+</header>
+
+<main>
+
+<section class="hero" style="background:#FFFFFF;color:#1E1E1E;position:relative;overflow:hidden">
+<div aria-hidden="true" class="deco" style="position:absolute;right:-160px;top:-200px;width:640px;height:640px;border-radius:50%;background:#006FE5"></div>
+<div aria-hidden="true" class="deco" style="position:absolute;right:240px;bottom:40px;width:120px;height:120px;background:#00F2A2;clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%)"></div>
+<div aria-hidden="true" class="deco" style="position:absolute;right:100px;bottom:120px;width:56px;height:56px;border-radius:50%;background:#F569FF"></div>
+<div style="position:relative;max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 80px;display:flex;flex-direction:column;gap:24px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#006FE5">FAQ</span>
+<h1 style="margin:0;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.05;max-width:900px">Agent FAQ</h1>
+<p style="margin:0;font-size:24px;color:#4A4A4A;max-width:720px">Answers to common questions about how we keep our AI agents accurate, safe, and up to date.</p>
+<div style="max-width:560px;width:100%">
+<label for="search" style="display:block;font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A;margin-bottom:8px">SEARCH THE QUESTIONS</label>
+<input id="search" type="search" placeholder="Try “model”, “memory”, or “permissions”" autocomplete="off" style="width:100%;box-sizing:border-box;min-height:52px;border-radius:8px;border:2px solid #1E1E1E;background:#FFFFFF;color:#1E1E1E;font:inherit;font-size:18px;padding:0 16px">
+</div>
+</div>
+</section>
+
+<section>
+<div style="max-width:1312px;margin:0 auto;padding:56px clamp(24px,5vw,64px) 80px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+
+<div style="flex:1 1 640px;min-width:0">
+
+<div role="group" aria-label="Filter by topic" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+<button type="button" class="chip" data-cat="all" aria-pressed="true">All</button>
+<button type="button" class="chip" data-cat="basics" aria-pressed="false">The basics</button>
+<button type="button" class="chip" data-cat="changes" aria-pressed="false">Changes and releases</button>
+<button type="button" class="chip" data-cat="evals" aria-pressed="false">Evals and monitoring</button>
+<button type="button" class="chip" data-cat="context" aria-pressed="false">Context and memory</button>
+<button type="button" class="chip" data-cat="safety" aria-pressed="false">Permissions and safety</button>
+<button type="button" class="chip" data-cat="ops" aria-pressed="false">Operations</button>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;margin-bottom:32px">
+<p id="count" role="status" style="margin:0;font-size:16px;color:#4A4A4A">22 questions</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+<span class="small" style="font-size:14px;color:#4A4A4A"><span class="pill s">SOURCED</span> from research</span>
+<span class="small" style="font-size:14px;color:#4A4A4A"><span class="pill p">PRACTICE</span> recommended</span>
+<button type="button" id="toggle" class="chip" style="min-height:40px;font-size:14px">Expand all</button>
+</div>
+</div>
+
+<div id="groups">
+
+<div class="grp" data-grp="basics" id="basics">
+<h3>The basics</h3>
+
+<details class="q" data-cat="basics"><summary><span>What is an agent harness?</span></summary><div class="ans">
+<p>Everything around the model: prompts, tools (including MCP servers), the filesystem, memory, skills, subagents, permissions, and human approval steps. The model reasons. The harness decides what it can see, do, and remember.</p>
+<p>In LangChain's Deep Agents, the harness has four groups: execution environment, context management, delegation, and steering.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="basics"><summary><span>Why does a harness need maintenance if the code doesn't change?</span></summary><div class="ans">
+<p>Its inputs change even when your code doesn't. Models get updated or retired, tools and data schemas change, and prompts get edited. A prompt edit can change behavior while data monitors stay silent, so the model, prompt, tools, and parameters need to be versioned and checked together.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="basics"><summary><span>Who should own a harness?</span></summary><div class="ans">
+<p>Each agent needs a named owner who decides on releases and answers for the success measure. A shared harness engineer owns prompts, tools, and permissions. Data owners certify the inputs. Reviewers approve outputs during Pilot and Deploy.</p>
+<p>On a small team one person can hold several roles, but write down who does. Unfilled owner placeholders on an agent page are the first thing to fix.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+</div>
+
+<div class="grp" data-grp="changes" id="changes">
+<h3>Changes and releases</h3>
+
+<details class="q" data-cat="changes"><summary><span>How do I change a prompt or tool safely?</span></summary><div class="ans">
+<p>Make one targeted change at a time and write down why. Run the regression suite, the must-pass cases, and the holdout set. Accept it only if new cases pass without breaking old ones, and have a second person review the diff. Update the config manifest and change log.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="changes"><summary><span>What is a holdout set, and why keep one?</span></summary><div class="ans">
+<p>A group of eval cases you don't tune against. Tuning against a fixed set tends to overfit: the fix works on those cases and nowhere else. If the holdout set doesn't improve, the change probably doesn't generalize.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="changes"><summary><span>What should we do when a new model comes out?</span></summary><div class="ans">
+<p>Treat it as a release. Run the full eval suite on the new model before switching. Then remove harness components one at a time and compare results, because some scaffolding may no longer be needed. Anthropic's guidance is to “re-examine a harness, stripping away pieces that are no longer load-bearing.”</p>
+<p>Roll out gradually and keep the old config to roll back to.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="changes"><summary><span>Should I always remove scaffolding when the model improves?</span></summary><div class="ans">
+<p>No. Only remove what your evals show is no longer needed. If you stay on a fixed older model, scaffolding that compensates for its weaknesses stays necessary.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="changes"><summary><span>Why pin the model version?</span></summary><div class="ans">
+<p>A floating alias like “latest” can change the model under you with no change on your side. Pin an exact version and tag every trace with it, so you can tell whether a behavior change came from the model or from something you edited.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+</div>
+
+<div class="grp" data-grp="evals" id="evals">
+<h3>Evals and monitoring</h3>
+
+<details class="q" data-cat="evals"><summary><span>Where do eval cases come from?</span></summary><div class="ans">
+<p>Three places: cases engineers write by hand, production failures, and user corrections or edits. Production failures and user edits are usually the best source. Tag each case by behavior, such as tool selection, so you can run subsets.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="evals"><summary><span>How many eval cases do we need to start?</span></summary><div class="ans">
+<p>There's no sourced number. A reasonable starting point is 20 to 30 cases from real examples, split into an optimization set and a holdout set, with a small must-pass subset. Add a case every time something fails.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+<details class="q" data-cat="evals"><summary><span>Should the eval suite keep growing?</span></summary><div class="ans">
+<p>No. Remove cases that always pass and no longer tell you anything, and add cases from recent failures. LangChain's authors say the suite shouldn't only grow, because model capabilities and desired behaviors change.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="evals"><summary><span>What should we trace and monitor?</span></summary><div class="ans">
+<p>Every step of a run: LLM calls, tool calls, retrieval, and subagent work, with cost and latency, tagged with the config version. Track tool-error rate, retries, cost per run, and how often reviewers edit or reject output.</p>
+<p>Tools named in the sources include LangSmith, Langfuse, Arize Phoenix, Braintrust, MLflow, DeepEval, and promptfoo. They haven't been compared here.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="evals"><summary><span>Why not let the agent grade its own work?</span></summary><div class="ans">
+<p>Graders tend to approve flawed work, and a separate grader is easier to tune. Anthropic found that tuning a standalone evaluator to be skeptical is far more tractable than making a generator critique itself. Calibrate the grader against human judgments.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+</div>
+
+<div class="grp" data-grp="context" id="context">
+<h3>Context and memory</h3>
+
+<details class="q" data-cat="context"><summary><span>What is context compaction, and why is it risky?</span></summary><div class="ans">
+<p>When a run gets long, the harness summarizes or clears earlier content to stay within the model's limit. Preprints report that this can silently drop standing rules, such as safety constraints, because summaries treat them as low priority.</p>
+<p>Pin critical rules so compaction can't remove them, keep large tool output in files, and log failures that happen after compaction. One paper's figure that about half of constraints survive uniform compaction comes from a single study.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="context"><summary><span>Why do subagents give generic answers?</span></summary><div class="ans">
+<p>In Deep Agents, subagents start with a fresh context by default. They only know what you put in their instructions. Include the facts they need, or use fork mode, which inherits the parent's history.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="context"><summary><span>The agent can edit its own memory file. Is that a problem?</span></summary><div class="ans">
+<p>It can be. If it records something false, the mistake comes back in later runs. Review changes to <code>AGENTS.md</code> the way you review code, keep it in version control, and add an eval for any wrong belief you remove.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+</div>
+
+<div class="grp" data-grp="safety" id="safety">
+<h3>Permissions and safety</h3>
+
+<details class="q" data-cat="safety"><summary><span>What's the main permission risk in Deep Agents?</span></summary><div class="ans">
+<p>Filesystem <code>permissions=</code> rules are evaluated first-match-wins, and operations that match no rule are allowed. A gap means access. End each rule list with an explicit deny, and review the rules monthly and whenever you add a tool or subagent.</p>
+<p>Permissions also don't apply to sandbox backends.</p>
+<span class="pill s">SOURCED</span></div></details>
+
+<details class="q" data-cat="safety"><summary><span>When should a human approve an action?</span></summary><div class="ans">
+<p>For any tool that writes, sends, or changes something. Deep Agents supports this through <code>interrupt_on</code>. Keep it on, extend it when you add tools, and revisit it before moving an agent to a wider group.</p>
+<p>Also check whether reviewers have started approving without reading, for example near-zero edits over several weeks.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+</div>
+
+<div class="grp" data-grp="ops" id="ops">
+<h3>Operations</h3>
+
+<details class="q" data-cat="ops"><summary><span>What do we do when something breaks?</span></summary><div class="ans">
+<p>Contain it by pausing the agent or tightening approval. Save the trace, inputs, and config version. Find the cause: model, prompt, tool, data, or permission. Fix it in the harness rather than patching one output. Add the failure as an eval case, then log the incident and tell the agent's users.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+<details class="q" data-cat="ops"><summary><span>How do we catch a batch agent that stops running?</span></summary><div class="ans">
+<p>Add a heartbeat alert, a failure count, and a daily check that the batch ran and how many items it handled. Silent stops are easy to miss because nothing errors out.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+<details class="q" data-cat="ops"><summary><span>How often should we review each agent?</span></summary><div class="ans">
+<p>Check failed runs and cost daily, read a sample of traces weekly, review permissions and data sources monthly, and review each agent against its success measure quarterly. Re-test the harness on every model release.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+<details class="q" data-cat="ops"><summary><span>Where do I start?</span></summary><div class="ans">
+<p>In week one, name an owner for each agent and fill in the placeholders on the agent pages. Then turn on tracing and pin the model for one agent, build 20 to 30 eval cases, and run the first weekly review.</p>
+<p>Start with the agent that has real users and use it as the template for the others.</p>
+<span class="pill p">PRACTICE</span></div></details>
+
+</div>
+
+</div>
+
+<div id="empty" hidden style="background:#FFFFFF;border-radius:16px;padding:32px;font-size:18px;color:#4A4A4A">
+<b style="color:#1E1E1E">No questions match.</b> Clear the search or pick another topic. If your question isn't here, <a href="talk-to-the-team.html" style="color:#006FE5;text-decoration:underline">talk to the team</a>.
+</div>
+
+</div>
+
+<aside style="flex:0 1 320px;min-width:0;display:flex;flex-direction:column;gap:24px" aria-label="Related">
+<div class="toc" style="background:#FFFFFF;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:14px;font-weight:700;letter-spacing:0.08em;color:#4A4A4A">JUMP TO</span>
+<a href="#basics">The basics</a>
+<a href="#changes">Changes and releases</a>
+<a href="#evals">Evals and monitoring</a>
+<a href="#context">Context and memory</a>
+<a href="#safety">Permissions and safety</a>
+<a href="#ops">Operations</a>
+</div>
+</aside>
+
+</div>
+</section>
+
+<section style="background:#006FE5;color:#FFFFFF">
+<div style="max-width:1312px;margin:0 auto;padding:80px clamp(24px,5vw,64px);display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+<h2 style="margin:0;font-size:48px;font-weight:700;line-height:1.1">Still have a question?</h2>
+<p style="margin:0;font-size:24px">Bring it to the GTM AI team. We'll point you to the right door.</p>
+<a href="talk-to-the-team.html" style="background:#FFFFFF;color:#1E1E1E;font-size:18px;font-weight:600;min-height:48px;padding:0 28px;border-radius:8px;display:inline-flex;align-items:center">Talk to the team</a>
+</div>
+</section>
+
+</main>
+
+<footer style="background:#1E1E1E;color:#A0A0A0">
+<div style="max-width:1312px;margin:0 auto;padding:32px clamp(24px,5vw,64px);font-size:14px">GTM AI Transformation · <a href="faq.html" aria-current="page" style="color:#F0F0F0;text-decoration:underline">FAQ</a> · Contact: <a href="mailto:gtmai@alteryx.com" style="color:#F0F0F0;text-decoration:underline">gtmai@alteryx.com</a></div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var cat='all', term='';
+  var items=[].slice.call(document.querySelectorAll('.q'));
+  var groups=[].slice.call(document.querySelectorAll('.grp'));
+  var chips=[].slice.call(document.querySelectorAll('.chip[data-cat]'));
+  var search=document.getElementById('search');
+  var count=document.getElementById('count');
+  var empty=document.getElementById('empty');
+  var toggle=document.getElementById('toggle');
+  function apply(){
+    var shown=0;
+    items.forEach(function(d){
+      var ok=(cat==='all'||d.getAttribute('data-cat')===cat)&&(!term||d.textContent.toLowerCase().indexOf(term)>-1);
+      d.hidden=!ok; if(ok)shown++;
+    });
+    groups.forEach(function(g){
+      g.hidden=!g.querySelector('.q:not([hidden])');
+    });
+    count.textContent=shown+(shown===1?' question':' questions');
+    empty.hidden=shown>0;
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      cat=c.getAttribute('data-cat');
+      chips.forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false');});
+      apply();
+    });
+  });
+  search.addEventListener('input',function(){term=search.value.trim().toLowerCase();apply();});
+  toggle.addEventListener('click',function(){
+    var open=toggle.getAttribute('data-open')!=='1';
+    items.forEach(function(d){ if(!d.hidden) d.open=open; });
+    toggle.setAttribute('data-open',open?'1':'0');
+    toggle.textContent=open?'Collapse all':'Expand all';
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
